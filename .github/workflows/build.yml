@@ -39,7 +39,7 @@ jobs:
 
       - name: Build android apks
         run: |
-          flutter build apk
+          flutter build apk --no-tree-shake-icons
           mkdir -p dist
           mv build/app/outputs/flutter-apk/app-release.apk dist/Finsight-android-all.apk
 
