@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:finsight/models/models.dart';
 import 'package:finsight/services/gemini/gemini.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +11,7 @@ final jsonFormat = jsonEncode({
       "title": "String",
       "description": "String",
       "level": "1 to 5 (1 being the lowest and 5 being the highest) in integer",
-      "material_symbol_name": "String",
+      "materialSymbolName": "String",
     }
   ],
   "recommendations": [
@@ -35,5 +36,9 @@ final alertsPromptProvider = FutureProvider.family((ref, String csvFile) async {
     ],
   );
 
-  return response.text;
+  if (response.text == null) {
+    throw Exception("No response from the AI");
+  }
+
+  return AlertRecommendationResponse.fromJson(jsonDecode(response.text!));
 });

@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.3.3 <4.0.0'
 
 dependencies:
+  adaptive_breakpoints: ^0.1.7
   collection: ^1.18.0
   csv: ^6.0.0
   envied: ^0.5.4+1
