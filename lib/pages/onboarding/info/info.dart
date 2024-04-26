@@ -1,6 +1,8 @@
 import 'package:finsight/modules/onboarding/account_type.dart';
 import 'package:finsight/modules/onboarding/bank_account.dart';
+import 'package:finsight/modules/onboarding/find_banks.dart';
 import 'package:finsight/modules/onboarding/name.dart';
+import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -13,6 +15,8 @@ class InfoPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final controller = usePageController();
+    final hasBankAccount = ref
+        .watch(infoProvider.select((value) => value.hasBankAccount ?? false));
 
     void onNextPage() {
       controller.nextPage(
@@ -21,6 +25,12 @@ class InfoPage extends HookConsumerWidget {
       );
     }
 
+    final pages = [
+      InfoPageNameSection(onNext: onNextPage),
+      InfoPageAccountTypeSection(onNext: onNextPage),
+      InfoPageBankAccountSection(onNext: onNextPage),
+      if (!hasBankAccount) InfoPageFindBankSection(onNext: onNextPage),
+    ];
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -42,7 +52,7 @@ class InfoPage extends HookConsumerWidget {
                 builder: (context, _) {
                   return LinearProgressIndicator(
                     value: ((controller.page ?? 0) + 1) /
-                        3, // page index / length of pages
+                        pages.length, // page index / length of pages
                     backgroundColor: Colors.grey[300],
                     borderRadius: BorderRadius.circular(20),
                   );
@@ -57,11 +67,7 @@ class InfoPage extends HookConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
         child: PageView(
           controller: controller,
-          children: [
-            InfoPageNameSection(onNext: onNextPage),
-            InfoPageAccountTypeSection(onNext: onNextPage),
-            InfoPageBankAccountSection(onNext: onNextPage),
-          ],
+          children: pages,
         ),
       ),
     );
