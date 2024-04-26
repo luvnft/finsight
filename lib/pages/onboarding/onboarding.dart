@@ -1,5 +1,4 @@
-import 'package:finsight/pages/home/home.dart';
-import 'package:finsight/pages/home/rankings/rankings.dart';
+import 'package:finsight/pages/onboarding/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -45,7 +44,7 @@ class OnboardingPage extends StatelessWidget {
               const Gap(20),
               OutlinedButton(
                 onPressed: () {
-                  context.goNamed(RankingsPage.name);
+                  context.goNamed(InfoPage.name);
                 },
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(

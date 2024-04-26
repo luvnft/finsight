@@ -578,3 +578,176 @@ abstract class _AlertRecommendationRecommendation
           _$AlertRecommendationRecommendationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+InfoState _$InfoStateFromJson(Map<String, dynamic> json) {
+  return _InfoState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InfoState {
+  String? get name => throw _privateConstructorUsedError;
+  AccountType? get accountType => throw _privateConstructorUsedError;
+  bool? get hasBankAccount => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InfoStateCopyWith<InfoState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InfoStateCopyWith<$Res> {
+  factory $InfoStateCopyWith(InfoState value, $Res Function(InfoState) then) =
+      _$InfoStateCopyWithImpl<$Res, InfoState>;
+  @useResult
+  $Res call({String? name, AccountType? accountType, bool? hasBankAccount});
+}
+
+/// @nodoc
+class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
+    implements $InfoStateCopyWith<$Res> {
+  _$InfoStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? accountType = freezed,
+    Object? hasBankAccount = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      accountType: freezed == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType?,
+      hasBankAccount: freezed == hasBankAccount
+          ? _value.hasBankAccount
+          : hasBankAccount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InfoStateImplCopyWith<$Res>
+    implements $InfoStateCopyWith<$Res> {
+  factory _$$InfoStateImplCopyWith(
+          _$InfoStateImpl value, $Res Function(_$InfoStateImpl) then) =
+      __$$InfoStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? name, AccountType? accountType, bool? hasBankAccount});
+}
+
+/// @nodoc
+class __$$InfoStateImplCopyWithImpl<$Res>
+    extends _$InfoStateCopyWithImpl<$Res, _$InfoStateImpl>
+    implements _$$InfoStateImplCopyWith<$Res> {
+  __$$InfoStateImplCopyWithImpl(
+      _$InfoStateImpl _value, $Res Function(_$InfoStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? accountType = freezed,
+    Object? hasBankAccount = freezed,
+  }) {
+    return _then(_$InfoStateImpl(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      accountType: freezed == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType?,
+      hasBankAccount: freezed == hasBankAccount
+          ? _value.hasBankAccount
+          : hasBankAccount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InfoStateImpl implements _InfoState {
+  _$InfoStateImpl({this.name, this.accountType, this.hasBankAccount});
+
+  factory _$InfoStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InfoStateImplFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final AccountType? accountType;
+  @override
+  final bool? hasBankAccount;
+
+  @override
+  String toString() {
+    return 'InfoState(name: $name, accountType: $accountType, hasBankAccount: $hasBankAccount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InfoStateImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
+            (identical(other.hasBankAccount, hasBankAccount) ||
+                other.hasBankAccount == hasBankAccount));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, name, accountType, hasBankAccount);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InfoStateImplCopyWith<_$InfoStateImpl> get copyWith =>
+      __$$InfoStateImplCopyWithImpl<_$InfoStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InfoStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InfoState implements InfoState {
+  factory _InfoState(
+      {final String? name,
+      final AccountType? accountType,
+      final bool? hasBankAccount}) = _$InfoStateImpl;
+
+  factory _InfoState.fromJson(Map<String, dynamic> json) =
+      _$InfoStateImpl.fromJson;
+
+  @override
+  String? get name;
+  @override
+  AccountType? get accountType;
+  @override
+  bool? get hasBankAccount;
+  @override
+  @JsonKey(ignore: true)
+  _$$InfoStateImplCopyWith<_$InfoStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

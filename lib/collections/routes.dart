@@ -2,6 +2,7 @@ import 'package:finsight/pages/home/home.dart';
 import 'package:finsight/pages/home/insights/insights.dart';
 import 'package:finsight/pages/home/rankings/rankings.dart';
 import 'package:finsight/pages/home/settings/settings.dart';
+import 'package:finsight/pages/onboarding/info/info.dart';
 import 'package:finsight/pages/onboarding/onboarding.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,6 +12,13 @@ final router = GoRouter(
       path: '/',
       name: OnboardingPage.name,
       builder: (context, state) => const OnboardingPage(),
+      routes: [
+        GoRoute(
+          path: 'info',
+          name: InfoPage.name,
+          builder: (context, state) => const InfoPage(),
+        ),
+      ],
     ),
     ShellRoute(
       builder: (context, state, child) => HomeShell(child: child),

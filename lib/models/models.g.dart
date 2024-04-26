@@ -58,3 +58,24 @@ Map<String, dynamic> _$$AlertRecommendationRecommendationImplToJson(
       'title': instance.title,
       'description': instance.description,
     };
+
+_$InfoStateImpl _$$InfoStateImplFromJson(Map<String, dynamic> json) =>
+    _$InfoStateImpl(
+      name: json['name'] as String?,
+      accountType:
+          $enumDecodeNullable(_$AccountTypeEnumMap, json['accountType']),
+      hasBankAccount: json['hasBankAccount'] as bool?,
+    );
+
+Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'accountType': _$AccountTypeEnumMap[instance.accountType],
+      'hasBankAccount': instance.hasBankAccount,
+    };
+
+const _$AccountTypeEnumMap = {
+  AccountType.personal: 'personal',
+  AccountType.business: 'business',
+  AccountType.student: 'student',
+};

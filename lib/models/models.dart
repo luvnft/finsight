@@ -6,3 +6,4 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 
 part 'alerts.dart';
+part 'states/info.dart';
