@@ -1,26 +1,36 @@
-import 'package:file_picker/file_picker.dart';
-import 'package:finsight/pages/ai/ai.dart';
-import 'package:finsight/pages/csv_edit/csv_edit.dart';
 import 'package:finsight/pages/home/home.dart';
+import 'package:finsight/pages/home/insights/insights.dart';
+import 'package:finsight/pages/home/rankings/rankings.dart';
+import 'package:finsight/pages/home/settings/settings.dart';
+import 'package:finsight/pages/onboarding/onboarding.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      name: HomePage.name,
-      builder: (context, state) => const HomePage(),
+      name: OnboardingPage.name,
+      builder: (context, state) => const OnboardingPage(),
     ),
-    GoRoute(
-      path: '/csv',
-      name: CSVEditPage.name,
-      builder: (context, state) =>
-          CSVEditPage(file: state.extra as PlatformFile),
-    ),
-    GoRoute(
-      path: '/ai',
-      name: AIPage.name,
-      builder: (context, state) => AIPage(csv: state.extra as String),
+    ShellRoute(
+      builder: (context, state, child) => HomeShell(child: child),
+      routes: [
+        GoRoute(
+          path: "/rankings",
+          name: RankingsPage.name,
+          builder: (context, state) => const RankingsPage(),
+        ),
+        GoRoute(
+          path: "/insights",
+          name: InsightsPage.name,
+          builder: (context, state) => const InsightsPage(),
+        ),
+        GoRoute(
+          path: "/settings",
+          name: SettingsPage.name,
+          builder: (context, state) => const SettingsPage(),
+        ),
+      ],
     ),
   ],
 );
