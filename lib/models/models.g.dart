@@ -31,7 +31,7 @@ _$AlertRecommendationAlertImpl _$$AlertRecommendationAlertImplFromJson(
     _$AlertRecommendationAlertImpl(
       title: json['title'] as String,
       description: json['description'] as String,
-      level: json['level'] as int,
+      level: (json['level'] as num).toInt(),
       materialSymbolName: json['materialSymbolName'] as String,
     );
 
@@ -65,6 +65,10 @@ _$InfoStateImpl _$$InfoStateImplFromJson(Map<String, dynamic> json) =>
       accountType:
           $enumDecodeNullable(_$AccountTypeEnumMap, json['accountType']),
       hasBankAccount: json['hasBankAccount'] as bool?,
+      bankAccounts:
+          $enumDecodeNullable(_$BankAccountsEnumMap, json['bankAccounts']),
+      bankAccountType: $enumDecodeNullable(
+          _$BankAccountTypeEnumMap, json['bankAccountType']),
     );
 
 Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
@@ -72,10 +76,22 @@ Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
       'name': instance.name,
       'accountType': _$AccountTypeEnumMap[instance.accountType],
       'hasBankAccount': instance.hasBankAccount,
+      'bankAccounts': _$BankAccountsEnumMap[instance.bankAccounts],
+      'bankAccountType': _$BankAccountTypeEnumMap[instance.bankAccountType],
     };
 
 const _$AccountTypeEnumMap = {
   AccountType.personal: 'personal',
   AccountType.business: 'business',
   AccountType.student: 'student',
+};
+
+const _$BankAccountsEnumMap = {
+  BankAccounts.asset: 'asset',
+  BankAccounts.liability: 'liability',
+};
+
+const _$BankAccountTypeEnumMap = {
+  BankAccountType.checking: 'checking',
+  BankAccountType.savings: 'savings',
 };

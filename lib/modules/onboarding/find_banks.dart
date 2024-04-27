@@ -1,3 +1,6 @@
+import 'package:finsight/extensions/strings.dart';
+import 'package:finsight/models/models.dart';
+import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,11 +12,14 @@ class InfoPageFindBankSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ThemeData(:textTheme, :colorScheme) = Theme.of(context);
+    final infoNotifier = ref.watch(infoProvider.notifier);
+    final info = ref.watch(infoProvider);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     return Column(
       children: [
         const Text(
-          "Let’s find the best account for your needs",
+          "Let's find the best account for your needs",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 24,
@@ -21,7 +27,7 @@ class InfoPageFindBankSection extends HookConsumerWidget {
           ),
         ),
         const Gap(20),
-        SegmentedButton(
+        SegmentedButton<BankAccounts>(
           style: ButtonStyle(
             textStyle: MaterialStatePropertyAll(
               textTheme.bodySmall!.copyWith(
@@ -29,18 +35,27 @@ class InfoPageFindBankSection extends HookConsumerWidget {
               ),
             ),
           ),
-          selected: const {"asset"},
-          onSelectionChanged: (selection) {},
+          selected: {if (info.bankAccounts != null) info.bankAccounts!},
+          emptySelectionAllowed: true,
+          onSelectionChanged: (selection) {
+            if (selection.isNotEmpty) {
+              infoNotifier.setState(
+                (state) => state.copyWith(
+                  bankAccounts: selection.first,
+                ),
+              );
+            }
+          },
           segments: const [
             ButtonSegment(
-              value: "asset",
+              value: BankAccounts.asset,
               label: Text(
                 "Asset\n(e.g. bank)",
                 textAlign: TextAlign.center,
               ),
             ),
             ButtonSegment(
-              value: "liability",
+              value: BankAccounts.liability,
               label: Text(
                 "Liability\n(e.g. credit card)",
                 textAlign: TextAlign.center,
@@ -59,12 +74,23 @@ class InfoPageFindBankSection extends HookConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             isDense: true,
             borderRadius: BorderRadius.circular(10),
-            items: const [
-              DropdownMenuItem(
-                child: Text("Account Type"),
-              )
+            hint: const Text("Bank account type"),
+            value: info.bankAccountType,
+            items: [
+              for (final b in BankAccountType.values)
+                DropdownMenuItem(
+                  value: b,
+                  child: Text(b.name.capitalize()),
+                ),
             ],
-            onChanged: (selected) {},
+            onChanged: (selected) {
+              if (selected == null) return;
+              infoNotifier.setState(
+                (state) => state.copyWith(
+                  bankAccountType: selected,
+                ),
+              );
+            },
           ),
         ),
         const Gap(40),
@@ -75,7 +101,16 @@ class InfoPageFindBankSection extends HookConsumerWidget {
         ),
         const Gap(10),
         FilledButton(
-          onPressed: () {},
+          onPressed: () {
+            if (info.bankAccounts == null || info.bankAccountType == null) {
+              scaffoldMessenger.showSnackBar(
+                const SnackBar(
+                  content: Text("Please select both options"),
+                ),
+              );
+              return;
+            }
+          },
           style: FilledButton.styleFrom(
             minimumSize: const Size(200, 40),
           ),

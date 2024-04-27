@@ -588,6 +588,8 @@ mixin _$InfoState {
   String? get name => throw _privateConstructorUsedError;
   AccountType? get accountType => throw _privateConstructorUsedError;
   bool? get hasBankAccount => throw _privateConstructorUsedError;
+  BankAccounts? get bankAccounts => throw _privateConstructorUsedError;
+  BankAccountType? get bankAccountType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -600,7 +602,12 @@ abstract class $InfoStateCopyWith<$Res> {
   factory $InfoStateCopyWith(InfoState value, $Res Function(InfoState) then) =
       _$InfoStateCopyWithImpl<$Res, InfoState>;
   @useResult
-  $Res call({String? name, AccountType? accountType, bool? hasBankAccount});
+  $Res call(
+      {String? name,
+      AccountType? accountType,
+      bool? hasBankAccount,
+      BankAccounts? bankAccounts,
+      BankAccountType? bankAccountType});
 }
 
 /// @nodoc
@@ -619,6 +626,8 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
     Object? name = freezed,
     Object? accountType = freezed,
     Object? hasBankAccount = freezed,
+    Object? bankAccounts = freezed,
+    Object? bankAccountType = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -633,6 +642,14 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
           ? _value.hasBankAccount
           : hasBankAccount // ignore: cast_nullable_to_non_nullable
               as bool?,
+      bankAccounts: freezed == bankAccounts
+          ? _value.bankAccounts
+          : bankAccounts // ignore: cast_nullable_to_non_nullable
+              as BankAccounts?,
+      bankAccountType: freezed == bankAccountType
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
+              as BankAccountType?,
     ) as $Val);
   }
 }
@@ -645,7 +662,12 @@ abstract class _$$InfoStateImplCopyWith<$Res>
       __$$InfoStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, AccountType? accountType, bool? hasBankAccount});
+  $Res call(
+      {String? name,
+      AccountType? accountType,
+      bool? hasBankAccount,
+      BankAccounts? bankAccounts,
+      BankAccountType? bankAccountType});
 }
 
 /// @nodoc
@@ -662,6 +684,8 @@ class __$$InfoStateImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? accountType = freezed,
     Object? hasBankAccount = freezed,
+    Object? bankAccounts = freezed,
+    Object? bankAccountType = freezed,
   }) {
     return _then(_$InfoStateImpl(
       name: freezed == name
@@ -676,6 +700,14 @@ class __$$InfoStateImplCopyWithImpl<$Res>
           ? _value.hasBankAccount
           : hasBankAccount // ignore: cast_nullable_to_non_nullable
               as bool?,
+      bankAccounts: freezed == bankAccounts
+          ? _value.bankAccounts
+          : bankAccounts // ignore: cast_nullable_to_non_nullable
+              as BankAccounts?,
+      bankAccountType: freezed == bankAccountType
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
+              as BankAccountType?,
     ));
   }
 }
@@ -683,7 +715,12 @@ class __$$InfoStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InfoStateImpl implements _InfoState {
-  _$InfoStateImpl({this.name, this.accountType, this.hasBankAccount});
+  _$InfoStateImpl(
+      {this.name,
+      this.accountType,
+      this.hasBankAccount,
+      this.bankAccounts,
+      this.bankAccountType});
 
   factory _$InfoStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$InfoStateImplFromJson(json);
@@ -694,10 +731,14 @@ class _$InfoStateImpl implements _InfoState {
   final AccountType? accountType;
   @override
   final bool? hasBankAccount;
+  @override
+  final BankAccounts? bankAccounts;
+  @override
+  final BankAccountType? bankAccountType;
 
   @override
   String toString() {
-    return 'InfoState(name: $name, accountType: $accountType, hasBankAccount: $hasBankAccount)';
+    return 'InfoState(name: $name, accountType: $accountType, hasBankAccount: $hasBankAccount, bankAccounts: $bankAccounts, bankAccountType: $bankAccountType)';
   }
 
   @override
@@ -709,13 +750,17 @@ class _$InfoStateImpl implements _InfoState {
             (identical(other.accountType, accountType) ||
                 other.accountType == accountType) &&
             (identical(other.hasBankAccount, hasBankAccount) ||
-                other.hasBankAccount == hasBankAccount));
+                other.hasBankAccount == hasBankAccount) &&
+            (identical(other.bankAccounts, bankAccounts) ||
+                other.bankAccounts == bankAccounts) &&
+            (identical(other.bankAccountType, bankAccountType) ||
+                other.bankAccountType == bankAccountType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, accountType, hasBankAccount);
+  int get hashCode => Object.hash(runtimeType, name, accountType,
+      hasBankAccount, bankAccounts, bankAccountType);
 
   @JsonKey(ignore: true)
   @override
@@ -735,7 +780,9 @@ abstract class _InfoState implements InfoState {
   factory _InfoState(
       {final String? name,
       final AccountType? accountType,
-      final bool? hasBankAccount}) = _$InfoStateImpl;
+      final bool? hasBankAccount,
+      final BankAccounts? bankAccounts,
+      final BankAccountType? bankAccountType}) = _$InfoStateImpl;
 
   factory _InfoState.fromJson(Map<String, dynamic> json) =
       _$InfoStateImpl.fromJson;
@@ -746,6 +793,10 @@ abstract class _InfoState implements InfoState {
   AccountType? get accountType;
   @override
   bool? get hasBankAccount;
+  @override
+  BankAccounts? get bankAccounts;
+  @override
+  BankAccountType? get bankAccountType;
   @override
   @JsonKey(ignore: true)
   _$$InfoStateImplCopyWith<_$InfoStateImpl> get copyWith =>
