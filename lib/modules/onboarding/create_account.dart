@@ -10,7 +10,7 @@ class InfoPageCreateAccountSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final ThemeData(:textTheme, :colorScheme) = Theme.of(context);
+    final ThemeData(:textTheme) = Theme.of(context);
     final infoNotifier = ref.watch(infoProvider.notifier);
     final info = ref.watch(infoProvider);
     final scaffoldMessenger = ScaffoldMessenger.of(context);
@@ -91,7 +91,8 @@ class InfoPageCreateAccountSection extends HookConsumerWidget {
         const Gap(10),
         FilledButton(
           onPressed: () {
-            if (info.bankAccounts == null || info.bankAccountType == null) {
+            if (info.bankAccounts == null ||
+                info.bankAccountTypeLevel6 == null) {
               scaffoldMessenger.showSnackBar(
                 const SnackBar(
                   content: Text("Please select both options"),
@@ -99,6 +100,8 @@ class InfoPageCreateAccountSection extends HookConsumerWidget {
               );
               return;
             }
+
+            onNext();
           },
           style: FilledButton.styleFrom(
             minimumSize: const Size(200, 40),

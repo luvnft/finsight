@@ -110,6 +110,8 @@ class InfoPageFindBankSection extends HookConsumerWidget {
               );
               return;
             }
+
+            onNext();
           },
           style: FilledButton.styleFrom(
             minimumSize: const Size(200, 40),

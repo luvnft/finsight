@@ -71,6 +71,7 @@ _$InfoStateImpl _$$InfoStateImplFromJson(Map<String, dynamic> json) =>
           _$BankAccountTypeEnumMap, json['bankAccountType']),
       bankAccountTypeLevel6: $enumDecodeNullable(
           _$BankAccountTypeLevel6EnumMap, json['bankAccountTypeLevel6']),
+      accountName: json['accountName'] as String?,
     );
 
 Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
@@ -82,6 +83,7 @@ Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
       'bankAccountType': _$BankAccountTypeEnumMap[instance.bankAccountType],
       'bankAccountTypeLevel6':
           _$BankAccountTypeLevel6EnumMap[instance.bankAccountTypeLevel6],
+      'accountName': instance.accountName,
     };
 
 const _$AccountTypeEnumMap = {

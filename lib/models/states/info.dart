@@ -126,6 +126,7 @@ class InfoState with _$InfoState {
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
     BankAccountTypeLevel6? bankAccountTypeLevel6,
+    String? accountName,
   }) = _InfoState;
 
   factory InfoState.fromJson(Map<String, dynamic> json) =>

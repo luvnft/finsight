@@ -3,6 +3,7 @@ import 'package:finsight/modules/onboarding/bank_account.dart';
 import 'package:finsight/modules/onboarding/create_account.dart';
 import 'package:finsight/modules/onboarding/find_banks.dart';
 import 'package:finsight/modules/onboarding/name.dart';
+import 'package:finsight/modules/onboarding/select_account.dart';
 import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,8 +31,10 @@ class InfoPage extends HookConsumerWidget {
       InfoPageNameSection(onNext: onNextPage),
       InfoPageAccountTypeSection(onNext: onNextPage),
       InfoPageBankAccountSection(onNext: onNextPage),
-      if (hasBankAccount == true)
+      if (hasBankAccount == true) ...[
         InfoPageCreateAccountSection(onNext: onNextPage),
+        InfoPageSelectBankAccountSection(onNext: onNextPage),
+      ],
       if (hasBankAccount == false) InfoPageFindBankSection(onNext: onNextPage),
     ];
     return Scaffold(
