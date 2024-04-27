@@ -1,5 +1,6 @@
 import 'package:finsight/modules/onboarding/account_type.dart';
 import 'package:finsight/modules/onboarding/bank_account.dart';
+import 'package:finsight/modules/onboarding/create_account.dart';
 import 'package:finsight/modules/onboarding/find_banks.dart';
 import 'package:finsight/modules/onboarding/name.dart';
 import 'package:finsight/providers/info/info.dart';
@@ -15,8 +16,8 @@ class InfoPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final controller = usePageController();
-    final hasBankAccount = ref
-        .watch(infoProvider.select((value) => value.hasBankAccount ?? false));
+    final hasBankAccount =
+        ref.watch(infoProvider.select((value) => value.hasBankAccount));
 
     void onNextPage() {
       controller.nextPage(
@@ -29,7 +30,9 @@ class InfoPage extends HookConsumerWidget {
       InfoPageNameSection(onNext: onNextPage),
       InfoPageAccountTypeSection(onNext: onNextPage),
       InfoPageBankAccountSection(onNext: onNextPage),
-      if (!hasBankAccount) InfoPageFindBankSection(onNext: onNextPage),
+      if (hasBankAccount == true)
+        InfoPageCreateAccountSection(onNext: onNextPage),
+      if (hasBankAccount == false) InfoPageFindBankSection(onNext: onNextPage),
     ];
     return Scaffold(
       appBar: AppBar(
