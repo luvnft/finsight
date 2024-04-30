@@ -1,7 +1,10 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:finsight/pages/onboarding/info/csv_edit.dart';
 import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InfoPageSelectBankAccountSection extends HookConsumerWidget {
@@ -11,6 +14,7 @@ class InfoPageSelectBankAccountSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ThemeData(:textTheme, :colorScheme) = Theme.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     final info = ref.watch(infoProvider);
     final infoNotifier = ref.read(infoProvider.notifier);
@@ -63,7 +67,7 @@ class InfoPageSelectBankAccountSection extends HookConsumerWidget {
                 const Gap(20),
                 FilledButton(
                   focusNode: focusNode,
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       infoNotifier.setState(
                         (state) => state.copyWith(
@@ -71,6 +75,34 @@ class InfoPageSelectBankAccountSection extends HookConsumerWidget {
                         ),
                       );
                     }
+
+                    final fileResult = await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['csv'],
+                      allowMultiple: false,
+                      dialogTitle: 'Select a .csv file',
+                      withData: true,
+                    );
+
+                    if (fileResult == null) {
+                      return;
+                    }
+
+                    final file = fileResult.files.first;
+                    // deny anything more than 1MB
+                    if (file.size > 1000000) {
+                      scaffoldMessenger.showSnackBar(
+                        const SnackBar(
+                          content: Text("File size must be less than 1MB"),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                      return;
+                    }
+
+                    if (file.bytes == null || !context.mounted) return;
+
+                    context.pushNamed(CSVEditPage.name, extra: file);
                   },
                   child: const Text("Upload Statement"),
                 ),

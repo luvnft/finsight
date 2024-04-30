@@ -63,24 +63,28 @@ class InfoPageCreateAccountSection extends HookConsumerWidget {
           ],
         ),
         const Gap(40),
-        DropdownMenu<BankAccountTypeLevel6>(
-          hintText: "Bank account type",
-          initialSelection: info.bankAccountTypeLevel6,
-          dropdownMenuEntries: [
-            for (final b in BankAccountTypeLevel6.values)
-              DropdownMenuEntry(
-                value: b,
-                label: b.label,
-              ),
-          ],
-          onSelected: (selected) {
-            if (selected == null) return;
-            infoNotifier.setState(
-              (state) => state.copyWith(
-                bankAccountTypeLevel6: selected,
-              ),
-            );
-          },
+        SizedBox(
+          width: 200,
+          height: 40,
+          child: DropdownMenu<BankAccountTypeLevel6>(
+            hintText: "Bank account type",
+            initialSelection: info.bankAccountTypeLevel6,
+            dropdownMenuEntries: [
+              for (final type in BankAccountTypeLevel6.values)
+                DropdownMenuEntry(
+                  value: type,
+                  label: type.label,
+                ),
+            ],
+            onSelected: (selected) {
+              if (selected == null) return;
+              infoNotifier.setState(
+                (state) => state.copyWith(
+                  bankAccountTypeLevel6: selected,
+                ),
+              );
+            },
+          ),
         ),
         const Gap(40),
         Text(

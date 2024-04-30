@@ -19,7 +19,7 @@ enum BankAccounts {
 enum BankAccountTypeLevel6 {
   otherInsurance("Other Insurance"),
   savingsAccount("Savings account"),
-  $529("529"),
+  x529("529"),
   healthReimbursementArrangement("Health Reimbursement Arrangement"),
   land("Land"),
   educationSavingsAccount("Education Savings Account"),
@@ -32,7 +32,7 @@ enum BankAccountTypeLevel6 {
   otherCurrentAsset("Other Current Asset"),
   utma("Utma"),
   other("Other"),
-  $457b("457B"),
+  x457b("457B"),
   foodInventory("Food Inventory"),
   warehouseEquipment("Warehouse Equipment"),
   inventory("Inventory"),
@@ -66,7 +66,7 @@ enum BankAccountTypeLevel6 {
   resp("Resp"),
   buildingsAndImprovements("Buildings and Improvements"),
   driverAdvances("Driver Advances"),
-  $401a("401A"),
+  x401a("401A"),
   tfsa("Tfsa"),
   lira("Lira"),
   discountOnNotesReceivable("Discount on notes receivable"),
@@ -103,12 +103,12 @@ enum BankAccountTypeLevel6 {
   lrif("Lrif"),
   brokerage("Brokerage"),
   sepIra("Sep Ira"),
-  $401k("401K"),
+  x401k("401K"),
   vendorPrepaymentsAndVendorCredits("Vendor Prepayments and Vendor Credits"),
   prif("Prif"),
   rrif("Rrif"),
   constructionInProgress("Construction in Progress"),
-  $403b("403B"),
+  x403b("403B"),
   sarsep("Sarsep"),
   sipp("Sipp");
 
@@ -118,15 +118,19 @@ enum BankAccountTypeLevel6 {
 }
 
 @freezed
+@Collection(ignore: {'copyWith', 'isFilled'})
 class InfoState with _$InfoState {
   factory InfoState({
+    required int id,
     String? name,
-    AccountType? accountType,
+    @Default(AccountType.personal) AccountType accountType,
     bool? hasBankAccount,
-    BankAccounts? bankAccounts,
-    BankAccountType? bankAccountType,
-    BankAccountTypeLevel6? bankAccountTypeLevel6,
+    @Default(BankAccounts.asset) BankAccounts bankAccounts,
+    @Default(BankAccountType.checking) BankAccountType bankAccountType,
+    @Default(BankAccountTypeLevel6.accountsReceivable)
+    BankAccountTypeLevel6 bankAccountTypeLevel6,
     String? accountName,
+    String? statementCsv,
   }) = _InfoState;
 
   factory InfoState.fromJson(Map<String, dynamic> json) =>
