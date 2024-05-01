@@ -1,5 +1,8 @@
+import 'package:finsight/collections/icons.dart';
+import 'package:finsight/pages/home/rankings/expanded/deposit.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:finsight/components/chip_selector/chip_selector.dart';
 import 'package:finsight/components/chip_selector/selectable_chip.dart';
@@ -8,8 +11,6 @@ import 'package:finsight/modules/home/rankings/chart.dart';
 import 'package:finsight/modules/home/rankings/deposit/deposit_item.dart';
 import 'package:finsight/providers/supabase/deposit/categories.dart';
 import 'package:finsight/providers/supabase/deposit/deposit.dart';
-import 'package:finsight/utils/pagination.dart';
-import 'package:very_good_infinite_list/very_good_infinite_list.dart';
 
 class RankingsPageDepositTab extends HookConsumerWidget {
   const RankingsPageDepositTab({super.key});
@@ -21,6 +22,8 @@ class RankingsPageDepositTab extends HookConsumerWidget {
     final depositNotifier = ref.read(depositProvider.notifier);
 
     final chartValues = ref.watch(depositChartValues);
+
+    final depositLength = deposits.asData?.value.deposits.length ?? 0;
 
     return CustomScrollView(
       slivers: [
@@ -50,32 +53,26 @@ class RankingsPageDepositTab extends HookConsumerWidget {
           },
         ),
         const SliverGap(16),
-        SliverInfiniteList(
-          emptyBuilder: (context) {
-            return const Center(
-              child: Text("No deposits offers found"),
-            );
-          },
-          errorBuilder: (context) => const Center(
-            child: Text("An error occurred while getting deposit offers"),
-          ),
-          loadingBuilder: (context) => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          hasError: deposits.hasError,
-          hasReachedMax: deposits.asData?.value.hasMore == false,
-          isLoading: deposits.isLoadingNextPage || deposits.isLoading,
-          separatorBuilder: (context, index) => const Gap(16),
-          onFetchData: () {
-            depositNotifier.fetchMore();
-          },
-          itemCount: deposits.asData?.value.deposits.length ?? 0,
+        SliverList.separated(
+          separatorBuilder: (context, index) => const Gap(5),
+          itemCount: depositLength > 2 ? 2 : depositLength,
           itemBuilder: (context, index) {
             final deposit = deposits.asData!.value.deposits[index];
 
             return DepositItem(deposit: deposit);
           },
         ),
+        const SliverGap(16),
+        if (depositLength > 2)
+          SliverToBoxAdapter(
+            child: OutlinedButton.icon(
+              icon: const Icon(AppIcons.eye),
+              label: const Text("See all"),
+              onPressed: () {
+                context.pushNamed(DepositExpandedPage.name);
+              },
+            ),
+          )
       ],
     );
   }

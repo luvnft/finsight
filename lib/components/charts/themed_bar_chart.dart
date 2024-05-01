@@ -28,7 +28,7 @@ class ThemedBarChart extends StatelessWidget {
         barTouchData: BarTouchData(
           touchTooltipData: BarTouchTooltipData(
             getTooltipColor: (group) {
-              return colorScheme.onSurfaceVariant;
+              return colorScheme.surfaceVariant;
             },
             tooltipPadding: const EdgeInsets.all(4),
             getTooltipItem: getTooltipItem,

@@ -4,19 +4,32 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InfoNotifier extends Notifier<InfoState> {
   bool get isFilled {
-    final fields = [
+    final commonFields = [
       state.id,
       state.name,
       state.accountType,
       state.hasBankAccount,
       state.bankAccounts,
+    ];
+
+    final noBankAccountFields = [
       state.bankAccountType,
+    ];
+
+    final bankAccountFields = [
       state.bankAccountTypeLevel5,
       state.accountName,
       state.statementCsv,
     ];
 
-    return fields.every((element) => element != null);
+    final noBankAccountFilled =
+        noBankAccountFields.every((element) => element != null);
+    final bankAccountFilled =
+        bankAccountFields.every((element) => element != null);
+
+    return commonFields.every((element) => element != null) &&
+        ((state.hasBankAccount == false && noBankAccountFilled) ||
+            (state.hasBankAccount == true && bankAccountFilled));
   }
 
   @override

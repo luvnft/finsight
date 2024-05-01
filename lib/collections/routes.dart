@@ -1,6 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:finsight/pages/home/home.dart';
 import 'package:finsight/pages/home/insights/insights.dart';
+import 'package:finsight/pages/home/rankings/expanded/credits.dart';
+import 'package:finsight/pages/home/rankings/expanded/deposit.dart';
 import 'package:finsight/pages/home/rankings/rankings.dart';
 import 'package:finsight/pages/home/settings/settings.dart';
 import 'package:finsight/pages/onboarding/info/csv_edit.dart';
@@ -55,6 +57,20 @@ final routerProvider = Provider((ref) => GoRouter(
               path: "/rankings",
               name: RankingsPage.name,
               builder: (context, state) => const RankingsPage(),
+              routes: [
+                GoRoute(
+                  path: "expanded/credits",
+                  name: CreditsExpandedPage.name,
+                  parentNavigatorKey: rootNavigatorKey,
+                  builder: (context, state) => const CreditsExpandedPage(),
+                ),
+                GoRoute(
+                  path: "expanded/deposit",
+                  name: DepositExpandedPage.name,
+                  parentNavigatorKey: rootNavigatorKey,
+                  builder: (context, state) => const DepositExpandedPage(),
+                ),
+              ],
             ),
             GoRoute(
               path: "/insights",
