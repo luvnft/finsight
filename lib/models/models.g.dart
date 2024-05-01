@@ -26,8 +26,12 @@ const InfoStateSchema = IsarGeneratedSchema(
       ),
       IsarPropertySchema(
         name: 'accountType',
-        type: IsarType.byte,
-        enumMap: {"personal": 0, "business": 1, "student": 2},
+        type: IsarType.string,
+        enumMap: {
+          "personal": "personal",
+          "business": "business",
+          "student": "student"
+        },
       ),
       IsarPropertySchema(
         name: 'hasBankAccount',
@@ -35,112 +39,102 @@ const InfoStateSchema = IsarGeneratedSchema(
       ),
       IsarPropertySchema(
         name: 'bankAccounts',
-        type: IsarType.byte,
-        enumMap: {"asset": 0, "liability": 1},
+        type: IsarType.string,
+        enumMap: {"asset": "asset", "liability": "liability"},
       ),
       IsarPropertySchema(
         name: 'bankAccountType',
-        type: IsarType.byte,
-        enumMap: {"checking": 0, "savings": 1},
+        type: IsarType.string,
+        enumMap: {"checking": "checking", "savings": "savings"},
       ),
       IsarPropertySchema(
-        name: 'bankAccountTypeLevel6',
-        type: IsarType.byte,
+        name: 'bankAccountTypeLevel5',
+        type: IsarType.string,
         enumMap: {
-          "otherInsurance": 0,
-          "savingsAccount": 1,
-          "x529": 2,
-          "healthReimbursementArrangement": 3,
-          "land": 4,
-          "educationSavingsAccount": 5,
-          "courtCosts": 6,
-          "roth": 7,
-          "variableAnnuity": 8,
-          "certificateOfDepositAccount": 9,
-          "hsa": 10,
-          "healthSavingsAccount": 11,
-          "otherCurrentAsset": 12,
-          "utma": 13,
-          "other": 14,
-          "x457b": 15,
-          "foodInventory": 16,
-          "warehouseEquipment": 17,
-          "inventory": 18,
-          "accumulatedDepletion": 19,
-          "prepaidInsurance": 20,
-          "pension": 21,
-          "nonCustodialWallet": 22,
-          "tractorsAndTrailers": 23,
-          "allowanceForDoubtfulAccounts": 24,
-          "payrollClearing": 25,
-          "constructionEquipment": 26,
-          "keogh": 27,
-          "marketableSecurities": 28,
-          "otherNonCurrentAsset": 29,
-          "fixedAnnuity": 30,
-          "accumulatedDepreciation": 31,
-          "trust": 32,
-          "qshr": 33,
-          "gic": 34,
-          "roth401k": 35,
-          "rlif": 36,
-          "ugma": 37,
-          "mutualFund": 38,
-          "retainageReceivable": 39,
-          "retirement": 40,
-          "medicalEquipment": 41,
-          "moneyMarketAccount": 42,
-          "otherAnnuity": 43,
-          "expertWitnessFees": 44,
-          "furnitureAndEquipment": 45,
-          "resp": 46,
-          "buildingsAndImprovements": 47,
-          "driverAdvances": 48,
-          "x401a": 49,
-          "tfsa": 50,
-          "lira": 51,
-          "discountOnNotesReceivable": 52,
-          "ira": 53,
-          "cashManagementAccount": 54,
-          "rrsp": 55,
-          "nonTaxableBrokerageAccount": 56,
-          "uncategorizedAsset": 57,
-          "filingFees": 58,
-          "lifeInsurance": 59,
-          "intangibleAsset": 60,
-          "bank": 61,
-          "cash": 62,
-          "accountsReceivable": 63,
-          "obsoleteInventoryReserves": 64,
-          "accumulatedAmortization": 65,
-          "profitSharingPlan": 66,
-          "cryptoExchange": 67,
-          "paypalDepositoryAccount": 68,
-          "lrsp": 69,
-          "simpleIra": 70,
-          "securityDepositsAsset": 71,
-          "cashIsa": 72,
-          "advancedClientCosts": 73,
-          "rdsp": 74,
-          "prepaidDebitCard": 75,
-          "stockPlan": 76,
-          "tradeAccountsReceivable": 77,
-          "lif": 78,
-          "landscapingEquipment": 79,
-          "isa": 80,
-          "checkingAccount": 81,
-          "electronicBenefitTransferAccount": 82,
-          "lrif": 83,
-          "brokerage": 84,
-          "sepIra": 85,
-          "x401k": 86,
-          "vendorPrepaymentsAndVendorCredits": 87,
-          "prif": 88,
-          "rrif": 89,
-          "constructionInProgress": 90,
-          "x403b": 91,
-          "sarsep": 92,
-          "sipp": 93
+          "insuranceAccount": "Insurance Account",
+          "investmentAccount": "Investment Account",
+          "land": "Land",
+          "courtCosts": "Court Costs",
+          "otherCurrentAsset": "Other Current Asset",
+          "foodInventory": "Food Inventory",
+          "taxAdvantagedAccount": "Tax-advantaged Account",
+          "warehouseEquipment": "Warehouse Equipment",
+          "inventory": "Inventory",
+          "accountAccount": "Account Account",
+          "accumulatedDepletion": "Accumulated depletion",
+          "prepaidInsurance": "Prepaid Insurance",
+          "tractorsAndTrailers": "Tractors and Trailers",
+          "investmentCertificate": "Investment Certificate",
+          "allowanceForDoubtfulAccounts": "Allowance for doubtful accounts",
+          "payrollClearing": "Payroll Clearing",
+          "constructionEquipment": "Construction Equipment",
+          "marketableSecurities": "Marketable Securities",
+          "otherNonCurrentAsset": "Other Non-Current Asset",
+          "accumulatedDepreciation": "Accumulated Depreciation",
+          "savingsPlanAccount": "Savings Plan Account",
+          "stockPlanAccount": "Stock Plan Account",
+          "retainageReceivable": "Retainage Receivable",
+          "medicalEquipment": "Medical Equipment",
+          "expertWitnessFees": "Expert Witness Fees",
+          "utmaAccount": "UTMA Account",
+          "furnitureAndEquipment": "Furniture and Equipment",
+          "buildingsAndImprovements": "Buildings and Improvements",
+          "driverAdvances": "Driver Advances",
+          "shareAccount": "Share Account",
+          "cryptocurrencyAccount": "Cryptocurrency Account",
+          "discountOnNotesReceivable": "Discount on notes receivable",
+          "uncategorizedAsset": "Uncategorized Asset",
+          "annuityAccount": "Annuity Account",
+          "filingFees": "Filing Fees",
+          "mutualFundAccount": "Mutual Fund Account",
+          "brokerageAccount": "Brokerage Account",
+          "intangibleAsset": "Intangible Asset",
+          "pensionAccount": "Pension Account",
+          "accountsReceivable": "Accounts Receivable",
+          "obsoleteInventoryReserves": "Obsolete inventory reserves",
+          "bankAccount": "Bank Account",
+          "accumulatedAmortization": "Accumulated Amortization",
+          "k401Account": "401K Account",
+          "securityDepositsAsset": "Security Deposits Asset",
+          "advancedClientCosts": "Advanced Client Costs",
+          "tradeAccountsReceivable": "Trade accounts receivable",
+          "landscapingEquipment": "Landscaping Equipment",
+          "retirementAccount": "Retirement Account",
+          "cashOnHand": "Cash on Hand",
+          "vendorPrepaymentsAndVendorCredits":
+              "Vendor Prepayments and Vendor Credits",
+          "savingsAccount": "Savings Account",
+          "incomeFundAccount": "Income Fund Account",
+          "ugmaAccount": "UGMA Account",
+          "rothIRA": "Roth IRA",
+          "constructionInProgress": "Construction in Progress",
+          "trustAccount": "Trust Account",
+          "advanceCustomerPayments": "Advance Customer Payments",
+          "uncategorizedLiability": "Uncategorized Liability",
+          "shortTermDebt": "Short-Term Debt",
+          "lineOfCredit": "Line of Credit",
+          "discountOnNotesPayable": "Discount on Notes Payable",
+          "payrollLiabilities": "Payroll Liabilities",
+          "accountsPayable": "Accounts Payable",
+          "bondIssueCosts": "Bond Issue Costs",
+          "customerDepositsReceived": "Customer Deposits Received",
+          "discountOnBondsPayable": "Discount on bonds payable",
+          "shareholderLoan": "Shareholder Loan",
+          "creditCard": "Credit Card",
+          "deferredTaxLiability": "Deferred Tax Liability",
+          "employeeTipsPayable": "Employee Tips Payable",
+          "tenantSecurityDepositsHeld": "Tenant Security Deposits Held",
+          "customerDeposits": "Customer Deposits",
+          "loan": "Loan",
+          "customerPrepaymentsAndCustomerCredits":
+              "Customer Prepayments and Customer Credits",
+          "unearnedRevenue": "Unearned Revenue",
+          "accruedLiability": "Accrued Liability",
+          "taxesPayable": "Taxes Payable",
+          "loanAndLineOfCredit": "Loan and Line of Credit",
+          "salesTaxes": "Sales Taxes",
+          "otherNonCurrentLiability": "Other Non-Current Liability",
+          "longTermDebt": "Long-Term Debt"
         },
       ),
       IsarPropertySchema(
@@ -172,7 +166,14 @@ int serializeInfoState(IsarWriter writer, InfoState object) {
       IsarCore.writeString(writer, 1, value);
     }
   }
-  IsarCore.writeByte(writer, 2, object.accountType.index);
+  {
+    final value = object.accountType?.label;
+    if (value == null) {
+      IsarCore.writeNull(writer, 2);
+    } else {
+      IsarCore.writeString(writer, 2, value);
+    }
+  }
   {
     final value = object.hasBankAccount;
     if (value == null) {
@@ -181,9 +182,30 @@ int serializeInfoState(IsarWriter writer, InfoState object) {
       IsarCore.writeBool(writer, 3, value);
     }
   }
-  IsarCore.writeByte(writer, 4, object.bankAccounts.index);
-  IsarCore.writeByte(writer, 5, object.bankAccountType.index);
-  IsarCore.writeByte(writer, 6, object.bankAccountTypeLevel6.index);
+  {
+    final value = object.bankAccounts?.label;
+    if (value == null) {
+      IsarCore.writeNull(writer, 4);
+    } else {
+      IsarCore.writeString(writer, 4, value);
+    }
+  }
+  {
+    final value = object.bankAccountType?.label;
+    if (value == null) {
+      IsarCore.writeNull(writer, 5);
+    } else {
+      IsarCore.writeString(writer, 5, value);
+    }
+  }
+  {
+    final value = object.bankAccountTypeLevel5?.label;
+    if (value == null) {
+      IsarCore.writeNull(writer, 6);
+    } else {
+      IsarCore.writeString(writer, 6, value);
+    }
+  }
   {
     final value = object.accountName;
     if (value == null) {
@@ -209,15 +231,8 @@ InfoState deserializeInfoState(IsarReader reader) {
   _id = IsarCore.readId(reader);
   final String? _name;
   _name = IsarCore.readString(reader, 1);
-  final AccountType _accountType;
-  {
-    if (IsarCore.readNull(reader, 2)) {
-      _accountType = AccountType.personal;
-    } else {
-      _accountType = _infoStateAccountType[IsarCore.readByte(reader, 2)] ??
-          AccountType.personal;
-    }
-  }
+  final AccountType? _accountType;
+  _accountType = _infoStateAccountType[IsarCore.readString(reader, 2)] ?? null;
   final bool? _hasBankAccount;
   {
     if (IsarCore.readNull(reader, 3)) {
@@ -226,35 +241,15 @@ InfoState deserializeInfoState(IsarReader reader) {
       _hasBankAccount = IsarCore.readBool(reader, 3);
     }
   }
-  final BankAccounts _bankAccounts;
-  {
-    if (IsarCore.readNull(reader, 4)) {
-      _bankAccounts = BankAccounts.asset;
-    } else {
-      _bankAccounts = _infoStateBankAccounts[IsarCore.readByte(reader, 4)] ??
-          BankAccounts.asset;
-    }
-  }
-  final BankAccountType _bankAccountType;
-  {
-    if (IsarCore.readNull(reader, 5)) {
-      _bankAccountType = BankAccountType.checking;
-    } else {
-      _bankAccountType =
-          _infoStateBankAccountType[IsarCore.readByte(reader, 5)] ??
-              BankAccountType.checking;
-    }
-  }
-  final BankAccountTypeLevel6 _bankAccountTypeLevel6;
-  {
-    if (IsarCore.readNull(reader, 6)) {
-      _bankAccountTypeLevel6 = BankAccountTypeLevel6.otherInsurance;
-    } else {
-      _bankAccountTypeLevel6 =
-          _infoStateBankAccountTypeLevel6[IsarCore.readByte(reader, 6)] ??
-              BankAccountTypeLevel6.otherInsurance;
-    }
-  }
+  final BankAccounts? _bankAccounts;
+  _bankAccounts =
+      _infoStateBankAccounts[IsarCore.readString(reader, 4)] ?? null;
+  final BankAccountType? _bankAccountType;
+  _bankAccountType =
+      _infoStateBankAccountType[IsarCore.readString(reader, 5)] ?? null;
+  final BankAccountTypeLevel5? _bankAccountTypeLevel5;
+  _bankAccountTypeLevel5 =
+      _infoStateBankAccountTypeLevel5[IsarCore.readString(reader, 6)] ?? null;
   final String? _accountName;
   _accountName = IsarCore.readString(reader, 7);
   final String? _statementCsv;
@@ -266,7 +261,7 @@ InfoState deserializeInfoState(IsarReader reader) {
     hasBankAccount: _hasBankAccount,
     bankAccounts: _bankAccounts,
     bankAccountType: _bankAccountType,
-    bankAccountTypeLevel6: _bankAccountTypeLevel6,
+    bankAccountTypeLevel5: _bankAccountTypeLevel5,
     accountName: _accountName,
     statementCsv: _statementCsv,
   );
@@ -281,14 +276,7 @@ dynamic deserializeInfoStateProp(IsarReader reader, int property) {
     case 1:
       return IsarCore.readString(reader, 1);
     case 2:
-      {
-        if (IsarCore.readNull(reader, 2)) {
-          return AccountType.personal;
-        } else {
-          return _infoStateAccountType[IsarCore.readByte(reader, 2)] ??
-              AccountType.personal;
-        }
-      }
+      return _infoStateAccountType[IsarCore.readString(reader, 2)] ?? null;
     case 3:
       {
         if (IsarCore.readNull(reader, 3)) {
@@ -298,33 +286,12 @@ dynamic deserializeInfoStateProp(IsarReader reader, int property) {
         }
       }
     case 4:
-      {
-        if (IsarCore.readNull(reader, 4)) {
-          return BankAccounts.asset;
-        } else {
-          return _infoStateBankAccounts[IsarCore.readByte(reader, 4)] ??
-              BankAccounts.asset;
-        }
-      }
+      return _infoStateBankAccounts[IsarCore.readString(reader, 4)] ?? null;
     case 5:
-      {
-        if (IsarCore.readNull(reader, 5)) {
-          return BankAccountType.checking;
-        } else {
-          return _infoStateBankAccountType[IsarCore.readByte(reader, 5)] ??
-              BankAccountType.checking;
-        }
-      }
+      return _infoStateBankAccountType[IsarCore.readString(reader, 5)] ?? null;
     case 6:
-      {
-        if (IsarCore.readNull(reader, 6)) {
-          return BankAccountTypeLevel6.otherInsurance;
-        } else {
-          return _infoStateBankAccountTypeLevel6[
-                  IsarCore.readByte(reader, 6)] ??
-              BankAccountTypeLevel6.otherInsurance;
-        }
-      }
+      return _infoStateBankAccountTypeLevel5[IsarCore.readString(reader, 6)] ??
+          null;
     case 7:
       return IsarCore.readString(reader, 7);
     case 8:
@@ -342,7 +309,7 @@ sealed class _InfoStateUpdate {
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
-    BankAccountTypeLevel6? bankAccountTypeLevel6,
+    BankAccountTypeLevel5? bankAccountTypeLevel5,
     String? accountName,
     String? statementCsv,
   });
@@ -361,7 +328,7 @@ class _InfoStateUpdateImpl implements _InfoStateUpdate {
     Object? hasBankAccount = ignore,
     Object? bankAccounts = ignore,
     Object? bankAccountType = ignore,
-    Object? bankAccountTypeLevel6 = ignore,
+    Object? bankAccountTypeLevel5 = ignore,
     Object? accountName = ignore,
     Object? statementCsv = ignore,
   }) {
@@ -373,8 +340,8 @@ class _InfoStateUpdateImpl implements _InfoStateUpdate {
           if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
           if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
           if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
-          if (bankAccountTypeLevel6 != ignore)
-            6: bankAccountTypeLevel6 as BankAccountTypeLevel6?,
+          if (bankAccountTypeLevel5 != ignore)
+            6: bankAccountTypeLevel5 as BankAccountTypeLevel5?,
           if (accountName != ignore) 7: accountName as String?,
           if (statementCsv != ignore) 8: statementCsv as String?,
         }) >
@@ -390,7 +357,7 @@ sealed class _InfoStateUpdateAll {
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
-    BankAccountTypeLevel6? bankAccountTypeLevel6,
+    BankAccountTypeLevel5? bankAccountTypeLevel5,
     String? accountName,
     String? statementCsv,
   });
@@ -409,7 +376,7 @@ class _InfoStateUpdateAllImpl implements _InfoStateUpdateAll {
     Object? hasBankAccount = ignore,
     Object? bankAccounts = ignore,
     Object? bankAccountType = ignore,
-    Object? bankAccountTypeLevel6 = ignore,
+    Object? bankAccountTypeLevel5 = ignore,
     Object? accountName = ignore,
     Object? statementCsv = ignore,
   }) {
@@ -419,8 +386,8 @@ class _InfoStateUpdateAllImpl implements _InfoStateUpdateAll {
       if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
       if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
       if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
-      if (bankAccountTypeLevel6 != ignore)
-        6: bankAccountTypeLevel6 as BankAccountTypeLevel6?,
+      if (bankAccountTypeLevel5 != ignore)
+        6: bankAccountTypeLevel5 as BankAccountTypeLevel5?,
       if (accountName != ignore) 7: accountName as String?,
       if (statementCsv != ignore) 8: statementCsv as String?,
     });
@@ -440,7 +407,7 @@ sealed class _InfoStateQueryUpdate {
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
-    BankAccountTypeLevel6? bankAccountTypeLevel6,
+    BankAccountTypeLevel5? bankAccountTypeLevel5,
     String? accountName,
     String? statementCsv,
   });
@@ -459,7 +426,7 @@ class _InfoStateQueryUpdateImpl implements _InfoStateQueryUpdate {
     Object? hasBankAccount = ignore,
     Object? bankAccounts = ignore,
     Object? bankAccountType = ignore,
-    Object? bankAccountTypeLevel6 = ignore,
+    Object? bankAccountTypeLevel5 = ignore,
     Object? accountName = ignore,
     Object? statementCsv = ignore,
   }) {
@@ -469,8 +436,8 @@ class _InfoStateQueryUpdateImpl implements _InfoStateQueryUpdate {
       if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
       if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
       if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
-      if (bankAccountTypeLevel6 != ignore)
-        6: bankAccountTypeLevel6 as BankAccountTypeLevel6?,
+      if (bankAccountTypeLevel5 != ignore)
+        6: bankAccountTypeLevel5 as BankAccountTypeLevel5?,
       if (accountName != ignore) 7: accountName as String?,
       if (statementCsv != ignore) 8: statementCsv as String?,
     });
@@ -497,7 +464,7 @@ class _InfoStateQueryBuilderUpdateImpl implements _InfoStateQueryUpdate {
     Object? hasBankAccount = ignore,
     Object? bankAccounts = ignore,
     Object? bankAccountType = ignore,
-    Object? bankAccountTypeLevel6 = ignore,
+    Object? bankAccountTypeLevel5 = ignore,
     Object? accountName = ignore,
     Object? statementCsv = ignore,
   }) {
@@ -509,8 +476,8 @@ class _InfoStateQueryBuilderUpdateImpl implements _InfoStateQueryUpdate {
         if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
         if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
         if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
-        if (bankAccountTypeLevel6 != ignore)
-          6: bankAccountTypeLevel6 as BankAccountTypeLevel6?,
+        if (bankAccountTypeLevel5 != ignore)
+          6: bankAccountTypeLevel5 as BankAccountTypeLevel5?,
         if (accountName != ignore) 7: accountName as String?,
         if (statementCsv != ignore) 8: statementCsv as String?,
       });
@@ -529,113 +496,108 @@ extension InfoStateQueryBuilderUpdate
 }
 
 const _infoStateAccountType = {
-  0: AccountType.personal,
-  1: AccountType.business,
-  2: AccountType.student,
+  r'personal': AccountType.personal,
+  r'business': AccountType.business,
+  r'student': AccountType.student,
 };
 const _infoStateBankAccounts = {
-  0: BankAccounts.asset,
-  1: BankAccounts.liability,
+  r'asset': BankAccounts.asset,
+  r'liability': BankAccounts.liability,
 };
 const _infoStateBankAccountType = {
-  0: BankAccountType.checking,
-  1: BankAccountType.savings,
+  r'checking': BankAccountType.checking,
+  r'savings': BankAccountType.savings,
 };
-const _infoStateBankAccountTypeLevel6 = {
-  0: BankAccountTypeLevel6.otherInsurance,
-  1: BankAccountTypeLevel6.savingsAccount,
-  2: BankAccountTypeLevel6.x529,
-  3: BankAccountTypeLevel6.healthReimbursementArrangement,
-  4: BankAccountTypeLevel6.land,
-  5: BankAccountTypeLevel6.educationSavingsAccount,
-  6: BankAccountTypeLevel6.courtCosts,
-  7: BankAccountTypeLevel6.roth,
-  8: BankAccountTypeLevel6.variableAnnuity,
-  9: BankAccountTypeLevel6.certificateOfDepositAccount,
-  10: BankAccountTypeLevel6.hsa,
-  11: BankAccountTypeLevel6.healthSavingsAccount,
-  12: BankAccountTypeLevel6.otherCurrentAsset,
-  13: BankAccountTypeLevel6.utma,
-  14: BankAccountTypeLevel6.other,
-  15: BankAccountTypeLevel6.x457b,
-  16: BankAccountTypeLevel6.foodInventory,
-  17: BankAccountTypeLevel6.warehouseEquipment,
-  18: BankAccountTypeLevel6.inventory,
-  19: BankAccountTypeLevel6.accumulatedDepletion,
-  20: BankAccountTypeLevel6.prepaidInsurance,
-  21: BankAccountTypeLevel6.pension,
-  22: BankAccountTypeLevel6.nonCustodialWallet,
-  23: BankAccountTypeLevel6.tractorsAndTrailers,
-  24: BankAccountTypeLevel6.allowanceForDoubtfulAccounts,
-  25: BankAccountTypeLevel6.payrollClearing,
-  26: BankAccountTypeLevel6.constructionEquipment,
-  27: BankAccountTypeLevel6.keogh,
-  28: BankAccountTypeLevel6.marketableSecurities,
-  29: BankAccountTypeLevel6.otherNonCurrentAsset,
-  30: BankAccountTypeLevel6.fixedAnnuity,
-  31: BankAccountTypeLevel6.accumulatedDepreciation,
-  32: BankAccountTypeLevel6.trust,
-  33: BankAccountTypeLevel6.qshr,
-  34: BankAccountTypeLevel6.gic,
-  35: BankAccountTypeLevel6.roth401k,
-  36: BankAccountTypeLevel6.rlif,
-  37: BankAccountTypeLevel6.ugma,
-  38: BankAccountTypeLevel6.mutualFund,
-  39: BankAccountTypeLevel6.retainageReceivable,
-  40: BankAccountTypeLevel6.retirement,
-  41: BankAccountTypeLevel6.medicalEquipment,
-  42: BankAccountTypeLevel6.moneyMarketAccount,
-  43: BankAccountTypeLevel6.otherAnnuity,
-  44: BankAccountTypeLevel6.expertWitnessFees,
-  45: BankAccountTypeLevel6.furnitureAndEquipment,
-  46: BankAccountTypeLevel6.resp,
-  47: BankAccountTypeLevel6.buildingsAndImprovements,
-  48: BankAccountTypeLevel6.driverAdvances,
-  49: BankAccountTypeLevel6.x401a,
-  50: BankAccountTypeLevel6.tfsa,
-  51: BankAccountTypeLevel6.lira,
-  52: BankAccountTypeLevel6.discountOnNotesReceivable,
-  53: BankAccountTypeLevel6.ira,
-  54: BankAccountTypeLevel6.cashManagementAccount,
-  55: BankAccountTypeLevel6.rrsp,
-  56: BankAccountTypeLevel6.nonTaxableBrokerageAccount,
-  57: BankAccountTypeLevel6.uncategorizedAsset,
-  58: BankAccountTypeLevel6.filingFees,
-  59: BankAccountTypeLevel6.lifeInsurance,
-  60: BankAccountTypeLevel6.intangibleAsset,
-  61: BankAccountTypeLevel6.bank,
-  62: BankAccountTypeLevel6.cash,
-  63: BankAccountTypeLevel6.accountsReceivable,
-  64: BankAccountTypeLevel6.obsoleteInventoryReserves,
-  65: BankAccountTypeLevel6.accumulatedAmortization,
-  66: BankAccountTypeLevel6.profitSharingPlan,
-  67: BankAccountTypeLevel6.cryptoExchange,
-  68: BankAccountTypeLevel6.paypalDepositoryAccount,
-  69: BankAccountTypeLevel6.lrsp,
-  70: BankAccountTypeLevel6.simpleIra,
-  71: BankAccountTypeLevel6.securityDepositsAsset,
-  72: BankAccountTypeLevel6.cashIsa,
-  73: BankAccountTypeLevel6.advancedClientCosts,
-  74: BankAccountTypeLevel6.rdsp,
-  75: BankAccountTypeLevel6.prepaidDebitCard,
-  76: BankAccountTypeLevel6.stockPlan,
-  77: BankAccountTypeLevel6.tradeAccountsReceivable,
-  78: BankAccountTypeLevel6.lif,
-  79: BankAccountTypeLevel6.landscapingEquipment,
-  80: BankAccountTypeLevel6.isa,
-  81: BankAccountTypeLevel6.checkingAccount,
-  82: BankAccountTypeLevel6.electronicBenefitTransferAccount,
-  83: BankAccountTypeLevel6.lrif,
-  84: BankAccountTypeLevel6.brokerage,
-  85: BankAccountTypeLevel6.sepIra,
-  86: BankAccountTypeLevel6.x401k,
-  87: BankAccountTypeLevel6.vendorPrepaymentsAndVendorCredits,
-  88: BankAccountTypeLevel6.prif,
-  89: BankAccountTypeLevel6.rrif,
-  90: BankAccountTypeLevel6.constructionInProgress,
-  91: BankAccountTypeLevel6.x403b,
-  92: BankAccountTypeLevel6.sarsep,
-  93: BankAccountTypeLevel6.sipp,
+const _infoStateBankAccountTypeLevel5 = {
+  r'Insurance Account': BankAccountTypeLevel5.insuranceAccount,
+  r'Investment Account': BankAccountTypeLevel5.investmentAccount,
+  r'Land': BankAccountTypeLevel5.land,
+  r'Court Costs': BankAccountTypeLevel5.courtCosts,
+  r'Other Current Asset': BankAccountTypeLevel5.otherCurrentAsset,
+  r'Food Inventory': BankAccountTypeLevel5.foodInventory,
+  r'Tax-advantaged Account': BankAccountTypeLevel5.taxAdvantagedAccount,
+  r'Warehouse Equipment': BankAccountTypeLevel5.warehouseEquipment,
+  r'Inventory': BankAccountTypeLevel5.inventory,
+  r'Account Account': BankAccountTypeLevel5.accountAccount,
+  r'Accumulated depletion': BankAccountTypeLevel5.accumulatedDepletion,
+  r'Prepaid Insurance': BankAccountTypeLevel5.prepaidInsurance,
+  r'Tractors and Trailers': BankAccountTypeLevel5.tractorsAndTrailers,
+  r'Investment Certificate': BankAccountTypeLevel5.investmentCertificate,
+  r'Allowance for doubtful accounts':
+      BankAccountTypeLevel5.allowanceForDoubtfulAccounts,
+  r'Payroll Clearing': BankAccountTypeLevel5.payrollClearing,
+  r'Construction Equipment': BankAccountTypeLevel5.constructionEquipment,
+  r'Marketable Securities': BankAccountTypeLevel5.marketableSecurities,
+  r'Other Non-Current Asset': BankAccountTypeLevel5.otherNonCurrentAsset,
+  r'Accumulated Depreciation': BankAccountTypeLevel5.accumulatedDepreciation,
+  r'Savings Plan Account': BankAccountTypeLevel5.savingsPlanAccount,
+  r'Stock Plan Account': BankAccountTypeLevel5.stockPlanAccount,
+  r'Retainage Receivable': BankAccountTypeLevel5.retainageReceivable,
+  r'Medical Equipment': BankAccountTypeLevel5.medicalEquipment,
+  r'Expert Witness Fees': BankAccountTypeLevel5.expertWitnessFees,
+  r'UTMA Account': BankAccountTypeLevel5.utmaAccount,
+  r'Furniture and Equipment': BankAccountTypeLevel5.furnitureAndEquipment,
+  r'Buildings and Improvements': BankAccountTypeLevel5.buildingsAndImprovements,
+  r'Driver Advances': BankAccountTypeLevel5.driverAdvances,
+  r'Share Account': BankAccountTypeLevel5.shareAccount,
+  r'Cryptocurrency Account': BankAccountTypeLevel5.cryptocurrencyAccount,
+  r'Discount on notes receivable':
+      BankAccountTypeLevel5.discountOnNotesReceivable,
+  r'Uncategorized Asset': BankAccountTypeLevel5.uncategorizedAsset,
+  r'Annuity Account': BankAccountTypeLevel5.annuityAccount,
+  r'Filing Fees': BankAccountTypeLevel5.filingFees,
+  r'Mutual Fund Account': BankAccountTypeLevel5.mutualFundAccount,
+  r'Brokerage Account': BankAccountTypeLevel5.brokerageAccount,
+  r'Intangible Asset': BankAccountTypeLevel5.intangibleAsset,
+  r'Pension Account': BankAccountTypeLevel5.pensionAccount,
+  r'Accounts Receivable': BankAccountTypeLevel5.accountsReceivable,
+  r'Obsolete inventory reserves':
+      BankAccountTypeLevel5.obsoleteInventoryReserves,
+  r'Bank Account': BankAccountTypeLevel5.bankAccount,
+  r'Accumulated Amortization': BankAccountTypeLevel5.accumulatedAmortization,
+  r'401K Account': BankAccountTypeLevel5.k401Account,
+  r'Security Deposits Asset': BankAccountTypeLevel5.securityDepositsAsset,
+  r'Advanced Client Costs': BankAccountTypeLevel5.advancedClientCosts,
+  r'Trade accounts receivable': BankAccountTypeLevel5.tradeAccountsReceivable,
+  r'Landscaping Equipment': BankAccountTypeLevel5.landscapingEquipment,
+  r'Retirement Account': BankAccountTypeLevel5.retirementAccount,
+  r'Cash on Hand': BankAccountTypeLevel5.cashOnHand,
+  r'Vendor Prepayments and Vendor Credits':
+      BankAccountTypeLevel5.vendorPrepaymentsAndVendorCredits,
+  r'Savings Account': BankAccountTypeLevel5.savingsAccount,
+  r'Income Fund Account': BankAccountTypeLevel5.incomeFundAccount,
+  r'UGMA Account': BankAccountTypeLevel5.ugmaAccount,
+  r'Roth IRA': BankAccountTypeLevel5.rothIRA,
+  r'Construction in Progress': BankAccountTypeLevel5.constructionInProgress,
+  r'Trust Account': BankAccountTypeLevel5.trustAccount,
+  r'Advance Customer Payments': BankAccountTypeLevel5.advanceCustomerPayments,
+  r'Uncategorized Liability': BankAccountTypeLevel5.uncategorizedLiability,
+  r'Short-Term Debt': BankAccountTypeLevel5.shortTermDebt,
+  r'Line of Credit': BankAccountTypeLevel5.lineOfCredit,
+  r'Discount on Notes Payable': BankAccountTypeLevel5.discountOnNotesPayable,
+  r'Payroll Liabilities': BankAccountTypeLevel5.payrollLiabilities,
+  r'Accounts Payable': BankAccountTypeLevel5.accountsPayable,
+  r'Bond Issue Costs': BankAccountTypeLevel5.bondIssueCosts,
+  r'Customer Deposits Received': BankAccountTypeLevel5.customerDepositsReceived,
+  r'Discount on bonds payable': BankAccountTypeLevel5.discountOnBondsPayable,
+  r'Shareholder Loan': BankAccountTypeLevel5.shareholderLoan,
+  r'Credit Card': BankAccountTypeLevel5.creditCard,
+  r'Deferred Tax Liability': BankAccountTypeLevel5.deferredTaxLiability,
+  r'Employee Tips Payable': BankAccountTypeLevel5.employeeTipsPayable,
+  r'Tenant Security Deposits Held':
+      BankAccountTypeLevel5.tenantSecurityDepositsHeld,
+  r'Customer Deposits': BankAccountTypeLevel5.customerDeposits,
+  r'Loan': BankAccountTypeLevel5.loan,
+  r'Customer Prepayments and Customer Credits':
+      BankAccountTypeLevel5.customerPrepaymentsAndCustomerCredits,
+  r'Unearned Revenue': BankAccountTypeLevel5.unearnedRevenue,
+  r'Accrued Liability': BankAccountTypeLevel5.accruedLiability,
+  r'Taxes Payable': BankAccountTypeLevel5.taxesPayable,
+  r'Loan and Line of Credit': BankAccountTypeLevel5.loanAndLineOfCredit,
+  r'Sales Taxes': BankAccountTypeLevel5.salesTaxes,
+  r'Other Non-Current Liability':
+      BankAccountTypeLevel5.otherNonCurrentLiability,
+  r'Long-Term Debt': BankAccountTypeLevel5.longTermDebt,
 };
 
 extension InfoStateQueryFilter
@@ -907,14 +869,28 @@ extension InfoStateQueryFilter
     });
   }
 
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      accountTypeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 2));
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      accountTypeIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 2));
+    });
+  }
+
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> accountTypeEqualTo(
-    AccountType value,
+    AccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
           property: 2,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -922,13 +898,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       accountTypeGreaterThan(
-    AccountType value,
+    AccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
           property: 2,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -936,26 +912,26 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       accountTypeGreaterThanOrEqualTo(
-    AccountType value,
+    AccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
           property: 2,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> accountTypeLessThan(
-    AccountType value,
+    AccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
           property: 2,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -963,28 +939,28 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       accountTypeLessThanOrEqualTo(
-    AccountType value,
+    AccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
           property: 2,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> accountTypeBetween(
-    AccountType lower,
-    AccountType upper,
+    AccountType? lower,
+    AccountType? upper,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
           property: 2,
-          lower: lower.index,
-          upper: upper.index,
+          lower: lower?.label,
+          upper: upper?.label,
         ),
       );
     });
@@ -1018,14 +994,28 @@ extension InfoStateQueryFilter
     });
   }
 
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      bankAccountsIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 4));
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      bankAccountsIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 4));
+    });
+  }
+
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> bankAccountsEqualTo(
-    BankAccounts value,
+    BankAccounts? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
           property: 4,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1033,13 +1023,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountsGreaterThan(
-    BankAccounts value,
+    BankAccounts? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
           property: 4,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1047,13 +1037,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountsGreaterThanOrEqualTo(
-    BankAccounts value,
+    BankAccounts? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
           property: 4,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1061,13 +1051,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountsLessThan(
-    BankAccounts value,
+    BankAccounts? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
           property: 4,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1075,42 +1065,56 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountsLessThanOrEqualTo(
-    BankAccounts value,
+    BankAccounts? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
           property: 4,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> bankAccountsBetween(
-    BankAccounts lower,
-    BankAccounts upper,
+    BankAccounts? lower,
+    BankAccounts? upper,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
           property: 4,
-          lower: lower.index,
-          upper: upper.index,
+          lower: lower?.label,
+          upper: upper?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      bankAccountTypeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 5));
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      bankAccountTypeIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 5));
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountTypeEqualTo(
-    BankAccountType value,
+    BankAccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
           property: 5,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1118,13 +1122,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountTypeGreaterThan(
-    BankAccountType value,
+    BankAccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
           property: 5,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1132,13 +1136,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountTypeGreaterThanOrEqualTo(
-    BankAccountType value,
+    BankAccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
           property: 5,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1146,13 +1150,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountTypeLessThan(
-    BankAccountType value,
+    BankAccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
           property: 5,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1160,13 +1164,13 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountTypeLessThanOrEqualTo(
-    BankAccountType value,
+    BankAccountType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
           property: 5,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
@@ -1174,101 +1178,115 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       bankAccountTypeBetween(
-    BankAccountType lower,
-    BankAccountType upper,
+    BankAccountType? lower,
+    BankAccountType? upper,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
           property: 5,
-          lower: lower.index,
-          upper: upper.index,
+          lower: lower?.label,
+          upper: upper?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
-      bankAccountTypeLevel6EqualTo(
-    BankAccountTypeLevel6 value,
+      bankAccountTypeLevel5IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 6));
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      bankAccountTypeLevel5IsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 6));
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
+      bankAccountTypeLevel5EqualTo(
+    BankAccountTypeLevel5? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
           property: 6,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
-      bankAccountTypeLevel6GreaterThan(
-    BankAccountTypeLevel6 value,
+      bankAccountTypeLevel5GreaterThan(
+    BankAccountTypeLevel5? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
           property: 6,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
-      bankAccountTypeLevel6GreaterThanOrEqualTo(
-    BankAccountTypeLevel6 value,
+      bankAccountTypeLevel5GreaterThanOrEqualTo(
+    BankAccountTypeLevel5? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
           property: 6,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
-      bankAccountTypeLevel6LessThan(
-    BankAccountTypeLevel6 value,
+      bankAccountTypeLevel5LessThan(
+    BankAccountTypeLevel5? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
           property: 6,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
-      bankAccountTypeLevel6LessThanOrEqualTo(
-    BankAccountTypeLevel6 value,
+      bankAccountTypeLevel5LessThanOrEqualTo(
+    BankAccountTypeLevel5? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
           property: 6,
-          value: value.index,
+          value: value?.label,
         ),
       );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
-      bankAccountTypeLevel6Between(
-    BankAccountTypeLevel6 lower,
-    BankAccountTypeLevel6 upper,
+      bankAccountTypeLevel5Between(
+    BankAccountTypeLevel5? lower,
+    BankAccountTypeLevel5? upper,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
           property: 6,
-          lower: lower.index,
-          upper: upper.index,
+          lower: lower?.label,
+          upper: upper?.label,
         ),
       );
     });
@@ -1697,15 +1715,24 @@ extension InfoStateQuerySortBy on QueryBuilder<InfoState, InfoState, QSortBy> {
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByAccountType() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByAccountType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(2);
+      return query.addSortBy(
+        2,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByAccountTypeDesc() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByAccountTypeDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(2, sort: Sort.desc);
+      return query.addSortBy(
+        2,
+        sort: Sort.desc,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
@@ -1721,41 +1748,66 @@ extension InfoStateQuerySortBy on QueryBuilder<InfoState, InfoState, QSortBy> {
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccounts() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccounts(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(4);
+      return query.addSortBy(
+        4,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountsDesc() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountsDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(4, sort: Sort.desc);
+      return query.addSortBy(
+        4,
+        sort: Sort.desc,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountType() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5);
+      return query.addSortBy(
+        5,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountTypeDesc() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountTypeDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5, sort: Sort.desc);
+      return query.addSortBy(
+        5,
+        sort: Sort.desc,
+        caseSensitive: caseSensitive,
+      );
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> sortByBankAccountTypeLevel5(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(
+        6,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterSortBy>
-      sortByBankAccountTypeLevel6() {
+      sortByBankAccountTypeLevel5Desc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(6);
-    });
-  }
-
-  QueryBuilder<InfoState, InfoState, QAfterSortBy>
-      sortByBankAccountTypeLevel6Desc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(6, sort: Sort.desc);
+      return query.addSortBy(
+        6,
+        sort: Sort.desc,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
@@ -1830,15 +1882,17 @@ extension InfoStateQuerySortThenBy
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByAccountType() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByAccountType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(2);
+      return query.addSortBy(2, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByAccountTypeDesc() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByAccountTypeDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(2, sort: Sort.desc);
+      return query.addSortBy(2, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
@@ -1854,41 +1908,45 @@ extension InfoStateQuerySortThenBy
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccounts() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccounts(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(4);
+      return query.addSortBy(4, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountsDesc() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountsDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(4, sort: Sort.desc);
+      return query.addSortBy(4, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountType() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5);
+      return query.addSortBy(5, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountTypeDesc() {
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountTypeDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5, sort: Sort.desc);
+      return query.addSortBy(5, sort: Sort.desc, caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterSortBy> thenByBankAccountTypeLevel5(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(6, caseSensitive: caseSensitive);
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterSortBy>
-      thenByBankAccountTypeLevel6() {
+      thenByBankAccountTypeLevel5Desc({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(6);
-    });
-  }
-
-  QueryBuilder<InfoState, InfoState, QAfterSortBy>
-      thenByBankAccountTypeLevel6Desc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(6, sort: Sort.desc);
+      return query.addSortBy(6, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
@@ -1930,9 +1988,10 @@ extension InfoStateQueryWhereDistinct
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterDistinct> distinctByAccountType() {
+  QueryBuilder<InfoState, InfoState, QAfterDistinct> distinctByAccountType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(2);
+      return query.addDistinctBy(2, caseSensitive: caseSensitive);
     });
   }
 
@@ -1943,23 +2002,24 @@ extension InfoStateQueryWhereDistinct
     });
   }
 
-  QueryBuilder<InfoState, InfoState, QAfterDistinct> distinctByBankAccounts() {
+  QueryBuilder<InfoState, InfoState, QAfterDistinct> distinctByBankAccounts(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(4);
+      return query.addDistinctBy(4, caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<InfoState, InfoState, QAfterDistinct> distinctByBankAccountType(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(5, caseSensitive: caseSensitive);
     });
   }
 
   QueryBuilder<InfoState, InfoState, QAfterDistinct>
-      distinctByBankAccountType() {
+      distinctByBankAccountTypeLevel5({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(5);
-    });
-  }
-
-  QueryBuilder<InfoState, InfoState, QAfterDistinct>
-      distinctByBankAccountTypeLevel6() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(6);
+      return query.addDistinctBy(6, caseSensitive: caseSensitive);
     });
   }
 
@@ -1992,7 +2052,7 @@ extension InfoStateQueryProperty1
     });
   }
 
-  QueryBuilder<InfoState, AccountType, QAfterProperty> accountTypeProperty() {
+  QueryBuilder<InfoState, AccountType?, QAfterProperty> accountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
@@ -2004,21 +2064,22 @@ extension InfoStateQueryProperty1
     });
   }
 
-  QueryBuilder<InfoState, BankAccounts, QAfterProperty> bankAccountsProperty() {
+  QueryBuilder<InfoState, BankAccounts?, QAfterProperty>
+      bankAccountsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(4);
     });
   }
 
-  QueryBuilder<InfoState, BankAccountType, QAfterProperty>
+  QueryBuilder<InfoState, BankAccountType?, QAfterProperty>
       bankAccountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(5);
     });
   }
 
-  QueryBuilder<InfoState, BankAccountTypeLevel6, QAfterProperty>
-      bankAccountTypeLevel6Property() {
+  QueryBuilder<InfoState, BankAccountTypeLevel5?, QAfterProperty>
+      bankAccountTypeLevel5Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(6);
     });
@@ -2051,7 +2112,7 @@ extension InfoStateQueryProperty2<R>
     });
   }
 
-  QueryBuilder<InfoState, (R, AccountType), QAfterProperty>
+  QueryBuilder<InfoState, (R, AccountType?), QAfterProperty>
       accountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
@@ -2064,22 +2125,22 @@ extension InfoStateQueryProperty2<R>
     });
   }
 
-  QueryBuilder<InfoState, (R, BankAccounts), QAfterProperty>
+  QueryBuilder<InfoState, (R, BankAccounts?), QAfterProperty>
       bankAccountsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(4);
     });
   }
 
-  QueryBuilder<InfoState, (R, BankAccountType), QAfterProperty>
+  QueryBuilder<InfoState, (R, BankAccountType?), QAfterProperty>
       bankAccountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(5);
     });
   }
 
-  QueryBuilder<InfoState, (R, BankAccountTypeLevel6), QAfterProperty>
-      bankAccountTypeLevel6Property() {
+  QueryBuilder<InfoState, (R, BankAccountTypeLevel5?), QAfterProperty>
+      bankAccountTypeLevel5Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(6);
     });
@@ -2112,7 +2173,7 @@ extension InfoStateQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<InfoState, (R1, R2, AccountType), QOperations>
+  QueryBuilder<InfoState, (R1, R2, AccountType?), QOperations>
       accountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
@@ -2126,22 +2187,22 @@ extension InfoStateQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<InfoState, (R1, R2, BankAccounts), QOperations>
+  QueryBuilder<InfoState, (R1, R2, BankAccounts?), QOperations>
       bankAccountsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(4);
     });
   }
 
-  QueryBuilder<InfoState, (R1, R2, BankAccountType), QOperations>
+  QueryBuilder<InfoState, (R1, R2, BankAccountType?), QOperations>
       bankAccountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(5);
     });
   }
 
-  QueryBuilder<InfoState, (R1, R2, BankAccountTypeLevel6), QOperations>
-      bankAccountTypeLevel6Property() {
+  QueryBuilder<InfoState, (R1, R2, BankAccountTypeLevel5?), QOperations>
+      bankAccountTypeLevel5Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(6);
     });
@@ -2224,18 +2285,14 @@ _$InfoStateImpl _$$InfoStateImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String?,
       accountType:
-          $enumDecodeNullable(_$AccountTypeEnumMap, json['accountType']) ??
-              AccountType.personal,
+          $enumDecodeNullable(_$AccountTypeEnumMap, json['accountType']),
       hasBankAccount: json['hasBankAccount'] as bool?,
       bankAccounts:
-          $enumDecodeNullable(_$BankAccountsEnumMap, json['bankAccounts']) ??
-              BankAccounts.asset,
+          $enumDecodeNullable(_$BankAccountsEnumMap, json['bankAccounts']),
       bankAccountType: $enumDecodeNullable(
-              _$BankAccountTypeEnumMap, json['bankAccountType']) ??
-          BankAccountType.checking,
-      bankAccountTypeLevel6: $enumDecodeNullable(
-              _$BankAccountTypeLevel6EnumMap, json['bankAccountTypeLevel6']) ??
-          BankAccountTypeLevel6.accountsReceivable,
+          _$BankAccountTypeEnumMap, json['bankAccountType']),
+      bankAccountTypeLevel5: $enumDecodeNullable(
+          _$BankAccountTypeLevel5EnumMap, json['bankAccountTypeLevel5']),
       accountName: json['accountName'] as String?,
       statementCsv: json['statementCsv'] as String?,
     );
@@ -2244,12 +2301,12 @@ Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'accountType': _$AccountTypeEnumMap[instance.accountType]!,
+      'accountType': _$AccountTypeEnumMap[instance.accountType],
       'hasBankAccount': instance.hasBankAccount,
-      'bankAccounts': _$BankAccountsEnumMap[instance.bankAccounts]!,
-      'bankAccountType': _$BankAccountTypeEnumMap[instance.bankAccountType]!,
-      'bankAccountTypeLevel6':
-          _$BankAccountTypeLevel6EnumMap[instance.bankAccountTypeLevel6]!,
+      'bankAccounts': _$BankAccountsEnumMap[instance.bankAccounts],
+      'bankAccountType': _$BankAccountTypeEnumMap[instance.bankAccountType],
+      'bankAccountTypeLevel5':
+          _$BankAccountTypeLevel5EnumMap[instance.bankAccountTypeLevel5],
       'accountName': instance.accountName,
       'statementCsv': instance.statementCsv,
     };
@@ -2270,105 +2327,91 @@ const _$BankAccountTypeEnumMap = {
   BankAccountType.savings: 'savings',
 };
 
-const _$BankAccountTypeLevel6EnumMap = {
-  BankAccountTypeLevel6.otherInsurance: 'otherInsurance',
-  BankAccountTypeLevel6.savingsAccount: 'savingsAccount',
-  BankAccountTypeLevel6.x529: 'x529',
-  BankAccountTypeLevel6.healthReimbursementArrangement:
-      'healthReimbursementArrangement',
-  BankAccountTypeLevel6.land: 'land',
-  BankAccountTypeLevel6.educationSavingsAccount: 'educationSavingsAccount',
-  BankAccountTypeLevel6.courtCosts: 'courtCosts',
-  BankAccountTypeLevel6.roth: 'roth',
-  BankAccountTypeLevel6.variableAnnuity: 'variableAnnuity',
-  BankAccountTypeLevel6.certificateOfDepositAccount:
-      'certificateOfDepositAccount',
-  BankAccountTypeLevel6.hsa: 'hsa',
-  BankAccountTypeLevel6.healthSavingsAccount: 'healthSavingsAccount',
-  BankAccountTypeLevel6.otherCurrentAsset: 'otherCurrentAsset',
-  BankAccountTypeLevel6.utma: 'utma',
-  BankAccountTypeLevel6.other: 'other',
-  BankAccountTypeLevel6.x457b: 'x457b',
-  BankAccountTypeLevel6.foodInventory: 'foodInventory',
-  BankAccountTypeLevel6.warehouseEquipment: 'warehouseEquipment',
-  BankAccountTypeLevel6.inventory: 'inventory',
-  BankAccountTypeLevel6.accumulatedDepletion: 'accumulatedDepletion',
-  BankAccountTypeLevel6.prepaidInsurance: 'prepaidInsurance',
-  BankAccountTypeLevel6.pension: 'pension',
-  BankAccountTypeLevel6.nonCustodialWallet: 'nonCustodialWallet',
-  BankAccountTypeLevel6.tractorsAndTrailers: 'tractorsAndTrailers',
-  BankAccountTypeLevel6.allowanceForDoubtfulAccounts:
+const _$BankAccountTypeLevel5EnumMap = {
+  BankAccountTypeLevel5.insuranceAccount: 'insuranceAccount',
+  BankAccountTypeLevel5.investmentAccount: 'investmentAccount',
+  BankAccountTypeLevel5.land: 'land',
+  BankAccountTypeLevel5.courtCosts: 'courtCosts',
+  BankAccountTypeLevel5.otherCurrentAsset: 'otherCurrentAsset',
+  BankAccountTypeLevel5.foodInventory: 'foodInventory',
+  BankAccountTypeLevel5.taxAdvantagedAccount: 'taxAdvantagedAccount',
+  BankAccountTypeLevel5.warehouseEquipment: 'warehouseEquipment',
+  BankAccountTypeLevel5.inventory: 'inventory',
+  BankAccountTypeLevel5.accountAccount: 'accountAccount',
+  BankAccountTypeLevel5.accumulatedDepletion: 'accumulatedDepletion',
+  BankAccountTypeLevel5.prepaidInsurance: 'prepaidInsurance',
+  BankAccountTypeLevel5.tractorsAndTrailers: 'tractorsAndTrailers',
+  BankAccountTypeLevel5.investmentCertificate: 'investmentCertificate',
+  BankAccountTypeLevel5.allowanceForDoubtfulAccounts:
       'allowanceForDoubtfulAccounts',
-  BankAccountTypeLevel6.payrollClearing: 'payrollClearing',
-  BankAccountTypeLevel6.constructionEquipment: 'constructionEquipment',
-  BankAccountTypeLevel6.keogh: 'keogh',
-  BankAccountTypeLevel6.marketableSecurities: 'marketableSecurities',
-  BankAccountTypeLevel6.otherNonCurrentAsset: 'otherNonCurrentAsset',
-  BankAccountTypeLevel6.fixedAnnuity: 'fixedAnnuity',
-  BankAccountTypeLevel6.accumulatedDepreciation: 'accumulatedDepreciation',
-  BankAccountTypeLevel6.trust: 'trust',
-  BankAccountTypeLevel6.qshr: 'qshr',
-  BankAccountTypeLevel6.gic: 'gic',
-  BankAccountTypeLevel6.roth401k: 'roth401k',
-  BankAccountTypeLevel6.rlif: 'rlif',
-  BankAccountTypeLevel6.ugma: 'ugma',
-  BankAccountTypeLevel6.mutualFund: 'mutualFund',
-  BankAccountTypeLevel6.retainageReceivable: 'retainageReceivable',
-  BankAccountTypeLevel6.retirement: 'retirement',
-  BankAccountTypeLevel6.medicalEquipment: 'medicalEquipment',
-  BankAccountTypeLevel6.moneyMarketAccount: 'moneyMarketAccount',
-  BankAccountTypeLevel6.otherAnnuity: 'otherAnnuity',
-  BankAccountTypeLevel6.expertWitnessFees: 'expertWitnessFees',
-  BankAccountTypeLevel6.furnitureAndEquipment: 'furnitureAndEquipment',
-  BankAccountTypeLevel6.resp: 'resp',
-  BankAccountTypeLevel6.buildingsAndImprovements: 'buildingsAndImprovements',
-  BankAccountTypeLevel6.driverAdvances: 'driverAdvances',
-  BankAccountTypeLevel6.x401a: 'x401a',
-  BankAccountTypeLevel6.tfsa: 'tfsa',
-  BankAccountTypeLevel6.lira: 'lira',
-  BankAccountTypeLevel6.discountOnNotesReceivable: 'discountOnNotesReceivable',
-  BankAccountTypeLevel6.ira: 'ira',
-  BankAccountTypeLevel6.cashManagementAccount: 'cashManagementAccount',
-  BankAccountTypeLevel6.rrsp: 'rrsp',
-  BankAccountTypeLevel6.nonTaxableBrokerageAccount:
-      'nonTaxableBrokerageAccount',
-  BankAccountTypeLevel6.uncategorizedAsset: 'uncategorizedAsset',
-  BankAccountTypeLevel6.filingFees: 'filingFees',
-  BankAccountTypeLevel6.lifeInsurance: 'lifeInsurance',
-  BankAccountTypeLevel6.intangibleAsset: 'intangibleAsset',
-  BankAccountTypeLevel6.bank: 'bank',
-  BankAccountTypeLevel6.cash: 'cash',
-  BankAccountTypeLevel6.accountsReceivable: 'accountsReceivable',
-  BankAccountTypeLevel6.obsoleteInventoryReserves: 'obsoleteInventoryReserves',
-  BankAccountTypeLevel6.accumulatedAmortization: 'accumulatedAmortization',
-  BankAccountTypeLevel6.profitSharingPlan: 'profitSharingPlan',
-  BankAccountTypeLevel6.cryptoExchange: 'cryptoExchange',
-  BankAccountTypeLevel6.paypalDepositoryAccount: 'paypalDepositoryAccount',
-  BankAccountTypeLevel6.lrsp: 'lrsp',
-  BankAccountTypeLevel6.simpleIra: 'simpleIra',
-  BankAccountTypeLevel6.securityDepositsAsset: 'securityDepositsAsset',
-  BankAccountTypeLevel6.cashIsa: 'cashIsa',
-  BankAccountTypeLevel6.advancedClientCosts: 'advancedClientCosts',
-  BankAccountTypeLevel6.rdsp: 'rdsp',
-  BankAccountTypeLevel6.prepaidDebitCard: 'prepaidDebitCard',
-  BankAccountTypeLevel6.stockPlan: 'stockPlan',
-  BankAccountTypeLevel6.tradeAccountsReceivable: 'tradeAccountsReceivable',
-  BankAccountTypeLevel6.lif: 'lif',
-  BankAccountTypeLevel6.landscapingEquipment: 'landscapingEquipment',
-  BankAccountTypeLevel6.isa: 'isa',
-  BankAccountTypeLevel6.checkingAccount: 'checkingAccount',
-  BankAccountTypeLevel6.electronicBenefitTransferAccount:
-      'electronicBenefitTransferAccount',
-  BankAccountTypeLevel6.lrif: 'lrif',
-  BankAccountTypeLevel6.brokerage: 'brokerage',
-  BankAccountTypeLevel6.sepIra: 'sepIra',
-  BankAccountTypeLevel6.x401k: 'x401k',
-  BankAccountTypeLevel6.vendorPrepaymentsAndVendorCredits:
+  BankAccountTypeLevel5.payrollClearing: 'payrollClearing',
+  BankAccountTypeLevel5.constructionEquipment: 'constructionEquipment',
+  BankAccountTypeLevel5.marketableSecurities: 'marketableSecurities',
+  BankAccountTypeLevel5.otherNonCurrentAsset: 'otherNonCurrentAsset',
+  BankAccountTypeLevel5.accumulatedDepreciation: 'accumulatedDepreciation',
+  BankAccountTypeLevel5.savingsPlanAccount: 'savingsPlanAccount',
+  BankAccountTypeLevel5.stockPlanAccount: 'stockPlanAccount',
+  BankAccountTypeLevel5.retainageReceivable: 'retainageReceivable',
+  BankAccountTypeLevel5.medicalEquipment: 'medicalEquipment',
+  BankAccountTypeLevel5.expertWitnessFees: 'expertWitnessFees',
+  BankAccountTypeLevel5.utmaAccount: 'utmaAccount',
+  BankAccountTypeLevel5.furnitureAndEquipment: 'furnitureAndEquipment',
+  BankAccountTypeLevel5.buildingsAndImprovements: 'buildingsAndImprovements',
+  BankAccountTypeLevel5.driverAdvances: 'driverAdvances',
+  BankAccountTypeLevel5.shareAccount: 'shareAccount',
+  BankAccountTypeLevel5.cryptocurrencyAccount: 'cryptocurrencyAccount',
+  BankAccountTypeLevel5.discountOnNotesReceivable: 'discountOnNotesReceivable',
+  BankAccountTypeLevel5.uncategorizedAsset: 'uncategorizedAsset',
+  BankAccountTypeLevel5.annuityAccount: 'annuityAccount',
+  BankAccountTypeLevel5.filingFees: 'filingFees',
+  BankAccountTypeLevel5.mutualFundAccount: 'mutualFundAccount',
+  BankAccountTypeLevel5.brokerageAccount: 'brokerageAccount',
+  BankAccountTypeLevel5.intangibleAsset: 'intangibleAsset',
+  BankAccountTypeLevel5.pensionAccount: 'pensionAccount',
+  BankAccountTypeLevel5.accountsReceivable: 'accountsReceivable',
+  BankAccountTypeLevel5.obsoleteInventoryReserves: 'obsoleteInventoryReserves',
+  BankAccountTypeLevel5.bankAccount: 'bankAccount',
+  BankAccountTypeLevel5.accumulatedAmortization: 'accumulatedAmortization',
+  BankAccountTypeLevel5.k401Account: 'k401Account',
+  BankAccountTypeLevel5.securityDepositsAsset: 'securityDepositsAsset',
+  BankAccountTypeLevel5.advancedClientCosts: 'advancedClientCosts',
+  BankAccountTypeLevel5.tradeAccountsReceivable: 'tradeAccountsReceivable',
+  BankAccountTypeLevel5.landscapingEquipment: 'landscapingEquipment',
+  BankAccountTypeLevel5.retirementAccount: 'retirementAccount',
+  BankAccountTypeLevel5.cashOnHand: 'cashOnHand',
+  BankAccountTypeLevel5.vendorPrepaymentsAndVendorCredits:
       'vendorPrepaymentsAndVendorCredits',
-  BankAccountTypeLevel6.prif: 'prif',
-  BankAccountTypeLevel6.rrif: 'rrif',
-  BankAccountTypeLevel6.constructionInProgress: 'constructionInProgress',
-  BankAccountTypeLevel6.x403b: 'x403b',
-  BankAccountTypeLevel6.sarsep: 'sarsep',
-  BankAccountTypeLevel6.sipp: 'sipp',
+  BankAccountTypeLevel5.savingsAccount: 'savingsAccount',
+  BankAccountTypeLevel5.incomeFundAccount: 'incomeFundAccount',
+  BankAccountTypeLevel5.ugmaAccount: 'ugmaAccount',
+  BankAccountTypeLevel5.rothIRA: 'rothIRA',
+  BankAccountTypeLevel5.constructionInProgress: 'constructionInProgress',
+  BankAccountTypeLevel5.trustAccount: 'trustAccount',
+  BankAccountTypeLevel5.advanceCustomerPayments: 'advanceCustomerPayments',
+  BankAccountTypeLevel5.uncategorizedLiability: 'uncategorizedLiability',
+  BankAccountTypeLevel5.shortTermDebt: 'shortTermDebt',
+  BankAccountTypeLevel5.lineOfCredit: 'lineOfCredit',
+  BankAccountTypeLevel5.discountOnNotesPayable: 'discountOnNotesPayable',
+  BankAccountTypeLevel5.payrollLiabilities: 'payrollLiabilities',
+  BankAccountTypeLevel5.accountsPayable: 'accountsPayable',
+  BankAccountTypeLevel5.bondIssueCosts: 'bondIssueCosts',
+  BankAccountTypeLevel5.customerDepositsReceived: 'customerDepositsReceived',
+  BankAccountTypeLevel5.discountOnBondsPayable: 'discountOnBondsPayable',
+  BankAccountTypeLevel5.shareholderLoan: 'shareholderLoan',
+  BankAccountTypeLevel5.creditCard: 'creditCard',
+  BankAccountTypeLevel5.deferredTaxLiability: 'deferredTaxLiability',
+  BankAccountTypeLevel5.employeeTipsPayable: 'employeeTipsPayable',
+  BankAccountTypeLevel5.tenantSecurityDepositsHeld:
+      'tenantSecurityDepositsHeld',
+  BankAccountTypeLevel5.customerDeposits: 'customerDeposits',
+  BankAccountTypeLevel5.loan: 'loan',
+  BankAccountTypeLevel5.customerPrepaymentsAndCustomerCredits:
+      'customerPrepaymentsAndCustomerCredits',
+  BankAccountTypeLevel5.unearnedRevenue: 'unearnedRevenue',
+  BankAccountTypeLevel5.accruedLiability: 'accruedLiability',
+  BankAccountTypeLevel5.taxesPayable: 'taxesPayable',
+  BankAccountTypeLevel5.loanAndLineOfCredit: 'loanAndLineOfCredit',
+  BankAccountTypeLevel5.salesTaxes: 'salesTaxes',
+  BankAccountTypeLevel5.otherNonCurrentLiability: 'otherNonCurrentLiability',
+  BankAccountTypeLevel5.longTermDebt: 'longTermDebt',
 };

@@ -11,7 +11,7 @@ class InfoNotifier extends Notifier<InfoState> {
       state.hasBankAccount,
       state.bankAccounts,
       state.bankAccountType,
-      state.bankAccountTypeLevel6,
+      state.bankAccountTypeLevel5,
       state.accountName,
       state.statementCsv,
     ];

@@ -1,120 +1,371 @@
 part of '../models.dart';
 
 enum AccountType {
-  personal,
-  business,
-  student,
+  personal("personal"),
+  business("business"),
+  student("student");
+
+  @enumValue
+  final String label;
+
+  const AccountType(this.label);
 }
 
 enum BankAccountType {
-  checking,
-  savings,
+  checking("checking"),
+  savings("savings");
+
+  @enumValue
+  final String label;
+
+  const BankAccountType(this.label);
 }
 
 enum BankAccounts {
-  asset,
-  liability,
-}
+  asset("asset"),
+  liability("liability");
 
-enum BankAccountTypeLevel6 {
-  otherInsurance("Other Insurance"),
-  savingsAccount("Savings account"),
-  x529("529"),
-  healthReimbursementArrangement("Health Reimbursement Arrangement"),
-  land("Land"),
-  educationSavingsAccount("Education Savings Account"),
-  courtCosts("Court Costs"),
-  roth("Roth"),
-  variableAnnuity("Variable Annuity"),
-  certificateOfDepositAccount("Certificate of Deposit Account"),
-  hsa("Hsa"),
-  healthSavingsAccount("Health Savings Account"),
-  otherCurrentAsset("Other Current Asset"),
-  utma("Utma"),
-  other("Other"),
-  x457b("457B"),
-  foodInventory("Food Inventory"),
-  warehouseEquipment("Warehouse Equipment"),
-  inventory("Inventory"),
-  accumulatedDepletion("Accumulated depletion"),
-  prepaidInsurance("Prepaid Insurance"),
-  pension("Pension"),
-  nonCustodialWallet("Non-Custodial Wallet"),
-  tractorsAndTrailers("Tractors and Trailers"),
-  allowanceForDoubtfulAccounts("Allowance for doubtful accounts"),
-  payrollClearing("Payroll Clearing"),
-  constructionEquipment("Construction Equipment"),
-  keogh("Keogh"),
-  marketableSecurities("Marketable Securities"),
-  otherNonCurrentAsset("Other Non-Current Asset"),
-  fixedAnnuity("Fixed Annuity"),
-  accumulatedDepreciation("Accumulated Depreciation"),
-  trust("Trust"),
-  qshr("Qshr"),
-  gic("Gic"),
-  roth401k("Roth 401K"),
-  rlif("Rlif"),
-  ugma("Ugma"),
-  mutualFund("Mutual Fund"),
-  retainageReceivable("Retainage Receivable"),
-  retirement("Retirement"),
-  medicalEquipment("Medical Equipment"),
-  moneyMarketAccount("Money Market Account"),
-  otherAnnuity("Other Annuity"),
-  expertWitnessFees("Expert Witness Fees"),
-  furnitureAndEquipment("Furniture and Equipment"),
-  resp("Resp"),
-  buildingsAndImprovements("Buildings and Improvements"),
-  driverAdvances("Driver Advances"),
-  x401a("401A"),
-  tfsa("Tfsa"),
-  lira("Lira"),
-  discountOnNotesReceivable("Discount on notes receivable"),
-  ira("Ira"),
-  cashManagementAccount("Cash Management Account"),
-  rrsp("Rrsp"),
-  nonTaxableBrokerageAccount("Non-Taxable Brokerage Account"),
-  uncategorizedAsset("Uncategorized Asset"),
-  filingFees("Filing Fees"),
-  lifeInsurance("Life Insurance"),
-  intangibleAsset("Intangible Asset"),
-  bank("Bank"),
-  cash("Cash"),
-  accountsReceivable("Accounts Receivable"),
-  obsoleteInventoryReserves("Obsolete inventory reserves"),
-  accumulatedAmortization("Accumulated Amortization"),
-  profitSharingPlan("Profit Sharing Plan"),
-  cryptoExchange("Crypto Exchange"),
-  paypalDepositoryAccount("PayPal Depository Account"),
-  lrsp("Lrsp"),
-  simpleIra("Simple Ira"),
-  securityDepositsAsset("Security Deposits Asset"),
-  cashIsa("Cash Isa"),
-  advancedClientCosts("Advanced Client Costs"),
-  rdsp("Rdsp"),
-  prepaidDebitCard("Prepaid Debit Card"),
-  stockPlan("Stock Plan"),
-  tradeAccountsReceivable("Trade accounts receivable"),
-  lif("Lif"),
-  landscapingEquipment("Landscaping Equipment"),
-  isa("Isa"),
-  checkingAccount("Checking Account"),
-  electronicBenefitTransferAccount("Electronic Benefit Transfer Account"),
-  lrif("Lrif"),
-  brokerage("Brokerage"),
-  sepIra("Sep Ira"),
-  x401k("401K"),
-  vendorPrepaymentsAndVendorCredits("Vendor Prepayments and Vendor Credits"),
-  prif("Prif"),
-  rrif("Rrif"),
-  constructionInProgress("Construction in Progress"),
-  x403b("403B"),
-  sarsep("Sarsep"),
-  sipp("Sipp");
-
+  @enumValue
   final String label;
 
-  const BankAccountTypeLevel6(this.label);
+  const BankAccounts(this.label);
+}
+
+enum BankAccountTypeLevel5 {
+  insuranceAccount(
+    "Insurance Account",
+    BankAccounts.asset,
+  ),
+  investmentAccount(
+    "Investment Account",
+    BankAccounts.asset,
+  ),
+  land(
+    "Land",
+    BankAccounts.asset,
+  ),
+  courtCosts(
+    "Court Costs",
+    BankAccounts.asset,
+  ),
+  otherCurrentAsset(
+    "Other Current Asset",
+    BankAccounts.asset,
+  ),
+  foodInventory(
+    "Food Inventory",
+    BankAccounts.asset,
+  ),
+  taxAdvantagedAccount(
+    "Tax-advantaged Account",
+    BankAccounts.asset,
+  ),
+  warehouseEquipment(
+    "Warehouse Equipment",
+    BankAccounts.asset,
+  ),
+  inventory(
+    "Inventory",
+    BankAccounts.asset,
+  ),
+  accountAccount(
+    "Account Account",
+    BankAccounts.asset,
+  ),
+  accumulatedDepletion(
+    "Accumulated depletion",
+    BankAccounts.asset,
+  ),
+  prepaidInsurance(
+    "Prepaid Insurance",
+    BankAccounts.asset,
+  ),
+  tractorsAndTrailers(
+    "Tractors and Trailers",
+    BankAccounts.asset,
+  ),
+  investmentCertificate(
+    "Investment Certificate",
+    BankAccounts.asset,
+  ),
+  allowanceForDoubtfulAccounts(
+    "Allowance for doubtful accounts",
+    BankAccounts.asset,
+  ),
+  payrollClearing(
+    "Payroll Clearing",
+    BankAccounts.asset,
+  ),
+  constructionEquipment(
+    "Construction Equipment",
+    BankAccounts.asset,
+  ),
+  marketableSecurities(
+    "Marketable Securities",
+    BankAccounts.asset,
+  ),
+  otherNonCurrentAsset(
+    "Other Non-Current Asset",
+    BankAccounts.asset,
+  ),
+  accumulatedDepreciation(
+    "Accumulated Depreciation",
+    BankAccounts.asset,
+  ),
+  savingsPlanAccount(
+    "Savings Plan Account",
+    BankAccounts.asset,
+  ),
+  stockPlanAccount(
+    "Stock Plan Account",
+    BankAccounts.asset,
+  ),
+  retainageReceivable(
+    "Retainage Receivable",
+    BankAccounts.asset,
+  ),
+  medicalEquipment(
+    "Medical Equipment",
+    BankAccounts.asset,
+  ),
+  expertWitnessFees(
+    "Expert Witness Fees",
+    BankAccounts.asset,
+  ),
+  utmaAccount(
+    "UTMA Account",
+    BankAccounts.asset,
+  ),
+  furnitureAndEquipment(
+    "Furniture and Equipment",
+    BankAccounts.asset,
+  ),
+  buildingsAndImprovements(
+    "Buildings and Improvements",
+    BankAccounts.asset,
+  ),
+  driverAdvances(
+    "Driver Advances",
+    BankAccounts.asset,
+  ),
+  shareAccount(
+    "Share Account",
+    BankAccounts.asset,
+  ),
+  cryptocurrencyAccount(
+    "Cryptocurrency Account",
+    BankAccounts.asset,
+  ),
+  discountOnNotesReceivable(
+    "Discount on notes receivable",
+    BankAccounts.asset,
+  ),
+  uncategorizedAsset(
+    "Uncategorized Asset",
+    BankAccounts.asset,
+  ),
+  annuityAccount(
+    "Annuity Account",
+    BankAccounts.asset,
+  ),
+  filingFees(
+    "Filing Fees",
+    BankAccounts.asset,
+  ),
+  mutualFundAccount(
+    "Mutual Fund Account",
+    BankAccounts.asset,
+  ),
+  brokerageAccount(
+    "Brokerage Account",
+    BankAccounts.asset,
+  ),
+  intangibleAsset(
+    "Intangible Asset",
+    BankAccounts.asset,
+  ),
+  pensionAccount(
+    "Pension Account",
+    BankAccounts.asset,
+  ),
+  accountsReceivable(
+    "Accounts Receivable",
+    BankAccounts.asset,
+  ),
+  obsoleteInventoryReserves(
+    "Obsolete inventory reserves",
+    BankAccounts.asset,
+  ),
+  bankAccount(
+    "Bank Account",
+    BankAccounts.asset,
+  ),
+  accumulatedAmortization(
+    "Accumulated Amortization",
+    BankAccounts.asset,
+  ),
+  k401Account(
+    "401K Account",
+    BankAccounts.asset,
+  ),
+  securityDepositsAsset(
+    "Security Deposits Asset",
+    BankAccounts.asset,
+  ),
+  advancedClientCosts(
+    "Advanced Client Costs",
+    BankAccounts.asset,
+  ),
+  tradeAccountsReceivable(
+    "Trade accounts receivable",
+    BankAccounts.asset,
+  ),
+  landscapingEquipment(
+    "Landscaping Equipment",
+    BankAccounts.asset,
+  ),
+  retirementAccount(
+    "Retirement Account",
+    BankAccounts.asset,
+  ),
+  cashOnHand(
+    "Cash on Hand",
+    BankAccounts.asset,
+  ),
+  vendorPrepaymentsAndVendorCredits(
+    "Vendor Prepayments and Vendor Credits",
+    BankAccounts.asset,
+  ),
+  savingsAccount(
+    "Savings Account",
+    BankAccounts.asset,
+  ),
+  incomeFundAccount(
+    "Income Fund Account",
+    BankAccounts.asset,
+  ),
+  ugmaAccount(
+    "UGMA Account",
+    BankAccounts.asset,
+  ),
+  rothIRA(
+    "Roth IRA",
+    BankAccounts.asset,
+  ),
+  constructionInProgress(
+    "Construction in Progress",
+    BankAccounts.asset,
+  ),
+  trustAccount(
+    "Trust Account",
+    BankAccounts.asset,
+  ),
+  advanceCustomerPayments(
+    "Advance Customer Payments",
+    BankAccounts.liability,
+  ),
+  uncategorizedLiability(
+    "Uncategorized Liability",
+    BankAccounts.liability,
+  ),
+  shortTermDebt(
+    "Short-Term Debt",
+    BankAccounts.liability,
+  ),
+  lineOfCredit(
+    "Line of Credit",
+    BankAccounts.liability,
+  ),
+  discountOnNotesPayable(
+    "Discount on Notes Payable",
+    BankAccounts.liability,
+  ),
+  payrollLiabilities(
+    "Payroll Liabilities",
+    BankAccounts.liability,
+  ),
+  accountsPayable(
+    "Accounts Payable",
+    BankAccounts.liability,
+  ),
+  bondIssueCosts(
+    "Bond Issue Costs",
+    BankAccounts.liability,
+  ),
+  customerDepositsReceived(
+    "Customer Deposits Received",
+    BankAccounts.liability,
+  ),
+  discountOnBondsPayable(
+    "Discount on bonds payable",
+    BankAccounts.liability,
+  ),
+  shareholderLoan(
+    "Shareholder Loan",
+    BankAccounts.liability,
+  ),
+  creditCard(
+    "Credit Card",
+    BankAccounts.liability,
+  ),
+  deferredTaxLiability(
+    "Deferred Tax Liability",
+    BankAccounts.liability,
+  ),
+  employeeTipsPayable(
+    "Employee Tips Payable",
+    BankAccounts.liability,
+  ),
+  tenantSecurityDepositsHeld(
+    "Tenant Security Deposits Held",
+    BankAccounts.liability,
+  ),
+  customerDeposits(
+    "Customer Deposits",
+    BankAccounts.liability,
+  ),
+  loan(
+    "Loan",
+    BankAccounts.liability,
+  ),
+  customerPrepaymentsAndCustomerCredits(
+    "Customer Prepayments and Customer Credits",
+    BankAccounts.liability,
+  ),
+  unearnedRevenue(
+    "Unearned Revenue",
+    BankAccounts.liability,
+  ),
+  accruedLiability(
+    "Accrued Liability",
+    BankAccounts.liability,
+  ),
+  taxesPayable(
+    "Taxes Payable",
+    BankAccounts.liability,
+  ),
+  loanAndLineOfCredit(
+    "Loan and Line of Credit",
+    BankAccounts.liability,
+  ),
+  salesTaxes(
+    "Sales Taxes",
+    BankAccounts.liability,
+  ),
+  otherNonCurrentLiability(
+    "Other Non-Current Liability",
+    BankAccounts.liability,
+  ),
+  longTermDebt(
+    "Long-Term Debt",
+    BankAccounts.liability,
+  );
+
+  @enumValue
+  final String label;
+  final BankAccounts bankAccounts;
+
+  const BankAccountTypeLevel5(this.label, this.bankAccounts);
 }
 
 @freezed
@@ -123,12 +374,11 @@ class InfoState with _$InfoState {
   factory InfoState({
     required int id,
     String? name,
-    @Default(AccountType.personal) AccountType accountType,
+    AccountType? accountType,
     bool? hasBankAccount,
-    @Default(BankAccounts.asset) BankAccounts bankAccounts,
-    @Default(BankAccountType.checking) BankAccountType bankAccountType,
-    @Default(BankAccountTypeLevel6.accountsReceivable)
-    BankAccountTypeLevel6 bankAccountTypeLevel6,
+    BankAccounts? bankAccounts,
+    BankAccountType? bankAccountType,
+    BankAccountTypeLevel5? bankAccountTypeLevel5,
     String? accountName,
     String? statementCsv,
   }) = _InfoState;

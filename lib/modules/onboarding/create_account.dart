@@ -1,6 +1,7 @@
 import 'package:finsight/models/models.dart';
 import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -66,21 +67,26 @@ class InfoPageCreateAccountSection extends HookConsumerWidget {
         SizedBox(
           width: 200,
           height: 40,
-          child: DropdownMenu<BankAccountTypeLevel6>(
+          child: DropdownMenu<BankAccountTypeLevel5>(
+            key: useMemoized(
+              () => ValueKey(info.bankAccounts),
+              [info.bankAccounts],
+            ),
             hintText: "Bank account type",
-            initialSelection: info.bankAccountTypeLevel6,
+            initialSelection: info.bankAccountTypeLevel5,
             dropdownMenuEntries: [
-              for (final type in BankAccountTypeLevel6.values)
-                DropdownMenuEntry(
-                  value: type,
-                  label: type.label,
-                ),
+              for (final type in BankAccountTypeLevel5.values)
+                if (type.bankAccounts == info.bankAccounts)
+                  DropdownMenuEntry(
+                    value: type,
+                    label: type.label,
+                  ),
             ],
             onSelected: (selected) {
               if (selected == null) return;
               infoNotifier.setState(
                 (state) => state.copyWith(
-                  bankAccountTypeLevel6: selected,
+                  bankAccountTypeLevel5: selected,
                 ),
               );
             },
@@ -96,7 +102,7 @@ class InfoPageCreateAccountSection extends HookConsumerWidget {
         FilledButton(
           onPressed: () {
             if (info.bankAccounts == null ||
-                info.bankAccountTypeLevel6 == null) {
+                info.bankAccountTypeLevel5 == null) {
               scaffoldMessenger.showSnackBar(
                 const SnackBar(
                   content: Text("Please select both options"),
