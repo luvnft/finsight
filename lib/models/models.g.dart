@@ -2415,3 +2415,214 @@ const _$BankAccountTypeLevel5EnumMap = {
   BankAccountTypeLevel5.otherNonCurrentLiability: 'otherNonCurrentLiability',
   BankAccountTypeLevel5.longTermDebt: 'longTermDebt',
 };
+
+_$SupabaseDepositImpl _$$SupabaseDepositImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SupabaseDepositImpl(
+      id: json['id'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      bankName: json['bankName'] as String,
+      estimatedEarning: (json['estimatedEarning'] as num).toInt(),
+      imageUrl: json['imageUrl'] as String?,
+      imageExternalUrl: json['imageExternalUrl'] as String,
+      maxAPY: (json['maxAPY'] as num).toDouble(),
+      offerAPY: (json['offerAPY'] as num?)?.toDouble(),
+      offerCategory:
+          $enumDecode(_$SupabaseDepositsCategoryEnumMap, json['offerCategory']),
+      offerName: json['offerName'] as String,
+      website: json['website'] as String,
+      zip: json['zip'] as String,
+      targetCustomer:
+          $enumDecode(_$SupabaseCustomerTypeEnumMap, json['targetCustomer']),
+      minimumDeposit: (json['minimumDeposit'] as num).toDouble(),
+      imageLightColor: json['imageLightColor'] as String,
+      imageDarkColor: json['imageDarkColor'] as String,
+      insurers: json['insurers'] as String,
+    );
+
+Map<String, dynamic> _$$SupabaseDepositImplToJson(
+        _$SupabaseDepositImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'bankName': instance.bankName,
+      'estimatedEarning': instance.estimatedEarning,
+      'imageUrl': instance.imageUrl,
+      'imageExternalUrl': instance.imageExternalUrl,
+      'maxAPY': instance.maxAPY,
+      'offerAPY': instance.offerAPY,
+      'offerCategory':
+          _$SupabaseDepositsCategoryEnumMap[instance.offerCategory]!,
+      'offerName': instance.offerName,
+      'website': instance.website,
+      'zip': instance.zip,
+      'targetCustomer': _$SupabaseCustomerTypeEnumMap[instance.targetCustomer]!,
+      'minimumDeposit': instance.minimumDeposit,
+      'imageLightColor': instance.imageLightColor,
+      'imageDarkColor': instance.imageDarkColor,
+      'insurers': instance.insurers,
+    };
+
+const _$SupabaseDepositsCategoryEnumMap = {
+  SupabaseDepositsCategory.checking: 'checking',
+  SupabaseDepositsCategory.savings: 'savings',
+  SupabaseDepositsCategory.mma: 'mma',
+  SupabaseDepositsCategory.cd: 'cd',
+  SupabaseDepositsCategory.ira: 'ira',
+  SupabaseDepositsCategory.businessSavings: 'businessSavings',
+  SupabaseDepositsCategory.healthSavings: 'healthSavings',
+  SupabaseDepositsCategory.installmentSavings: 'installmentSavings',
+  SupabaseDepositsCategory.childrensSavings: 'childrensSavings',
+  SupabaseDepositsCategory.rewardChecking: 'rewardChecking',
+  SupabaseDepositsCategory.finder: 'finder',
+  SupabaseDepositsCategory.businessChecking: 'businessChecking',
+};
+
+const _$SupabaseCustomerTypeEnumMap = {
+  SupabaseCustomerType.personal: 'personal',
+  SupabaseCustomerType.business: 'business',
+  SupabaseCustomerType.student: 'student',
+};
+
+_$SupabaseDepositAvgAPYImpl _$$SupabaseDepositAvgAPYImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SupabaseDepositAvgAPYImpl(
+      offerCategory:
+          $enumDecode(_$SupabaseDepositsCategoryEnumMap, json['offerCategory']),
+      avgAPY: (json['avgAPY'] as num).toDouble(),
+      avgEstimatedEarning: (json['avgEstimatedEarning'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$SupabaseDepositAvgAPYImplToJson(
+        _$SupabaseDepositAvgAPYImpl instance) =>
+    <String, dynamic>{
+      'offerCategory':
+          _$SupabaseDepositsCategoryEnumMap[instance.offerCategory]!,
+      'avgAPY': instance.avgAPY,
+      'avgEstimatedEarning': instance.avgEstimatedEarning,
+    };
+
+_$SupabaseCreditRewardRateImpl _$$SupabaseCreditRewardRateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SupabaseCreditRewardRateImpl(
+      name: json['name'] as String,
+      value: json['value'] as String,
+    );
+
+Map<String, dynamic> _$$SupabaseCreditRewardRateImplToJson(
+        _$SupabaseCreditRewardRateImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'value': instance.value,
+    };
+
+_$SupabaseCreditImpl _$$SupabaseCreditImplFromJson(Map<String, dynamic> json) =>
+    _$SupabaseCreditImpl(
+      id: json['id'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      name: json['name'] as String,
+      annualFee: (json['annualFee'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      categories: (json['categories'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$SupabaseCreditCategoryEnumMap, e))
+              .toList() ??
+          const [],
+      features: (json['features'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      highlights: (json['highlights'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      imageExternalUrl: json['imageExternalUrl'] as String,
+      introBalanceTransferAPR: json['introBalanceTransferAPR'] as String,
+      introPurchase: json['introPurchase'] as String,
+      label:
+          (json['label'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      rewardsRate: (json['rewardsRate'] as List<dynamic>)
+          .map((e) =>
+              SupabaseCreditRewardRate.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      score: json['score'] as String?,
+      scoreDescription: json['scoreDescription'] as String?,
+      views:
+          (json['views'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      isBusiness: json['isBusiness'] as bool,
+      link: json['link'] as String,
+      introBonus: json['introBonus'] as String,
+      introBonusUnit: json['introBonusUnit'] as String,
+      topReward: json['topReward'] as String,
+      topRewardUnit: json['topRewardUnit'] as String,
+      regularAprFrom: (json['regularAprFrom'] as num).toDouble(),
+      regularAprTo: (json['regularAprTo'] as num).toDouble(),
+      estimatedEarning: (json['estimatedEarning'] as num).toDouble(),
+      targetCustomer:
+          $enumDecode(_$SupabaseCustomerTypeEnumMap, json['targetCustomer']),
+      imageLightColor: json['imageLightColor'] as String,
+      imageDarkColor: json['imageDarkColor'] as String,
+    );
+
+Map<String, dynamic> _$$SupabaseCreditImplToJson(
+        _$SupabaseCreditImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'name': instance.name,
+      'annualFee': instance.annualFee,
+      'categories': instance.categories
+          .map((e) => _$SupabaseCreditCategoryEnumMap[e]!)
+          .toList(),
+      'features': instance.features,
+      'highlights': instance.highlights,
+      'imageExternalUrl': instance.imageExternalUrl,
+      'introBalanceTransferAPR': instance.introBalanceTransferAPR,
+      'introPurchase': instance.introPurchase,
+      'label': instance.label,
+      'rewardsRate': instance.rewardsRate,
+      'score': instance.score,
+      'scoreDescription': instance.scoreDescription,
+      'views': instance.views,
+      'isBusiness': instance.isBusiness,
+      'link': instance.link,
+      'introBonus': instance.introBonus,
+      'introBonusUnit': instance.introBonusUnit,
+      'topReward': instance.topReward,
+      'topRewardUnit': instance.topRewardUnit,
+      'regularAprFrom': instance.regularAprFrom,
+      'regularAprTo': instance.regularAprTo,
+      'estimatedEarning': instance.estimatedEarning,
+      'targetCustomer': _$SupabaseCustomerTypeEnumMap[instance.targetCustomer]!,
+      'imageLightColor': instance.imageLightColor,
+      'imageDarkColor': instance.imageDarkColor,
+    };
+
+const _$SupabaseCreditCategoryEnumMap = {
+  SupabaseCreditCategory.best: 'best',
+  SupabaseCreditCategory.rewards: 'rewards',
+  SupabaseCreditCategory.bonuses: 'bonuses',
+  SupabaseCreditCategory.transfer: 'transfer',
+  SupabaseCreditCategory.zeroInterest: 'zeroInterest',
+  SupabaseCreditCategory.noAnnualFee: 'noAnnualFee',
+  SupabaseCreditCategory.lowInterest: 'lowInterest',
+  SupabaseCreditCategory.travel: 'travel',
+  SupabaseCreditCategory.airline: 'airline',
+  SupabaseCreditCategory.hotel: 'hotel',
+  SupabaseCreditCategory.noForeignTransactionFee: 'noForeignTransactionFee',
+  SupabaseCreditCategory.business: 'business',
+  SupabaseCreditCategory.student: 'student',
+  SupabaseCreditCategory.gas: 'gas',
+};
+
+_$SupabaseCreditEstEarnAvgImpl _$$SupabaseCreditEstEarnAvgImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SupabaseCreditEstEarnAvgImpl(
+      category: $enumDecode(_$SupabaseCreditCategoryEnumMap, json['category']),
+      avgEstimatedEarning: (json['avgEstimatedEarning'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$SupabaseCreditEstEarnAvgImplToJson(
+        _$SupabaseCreditEstEarnAvgImpl instance) =>
+    <String, dynamic>{
+      'category': _$SupabaseCreditCategoryEnumMap[instance.category]!,
+      'avgEstimatedEarning': instance.avgEstimatedEarning,
+    };
