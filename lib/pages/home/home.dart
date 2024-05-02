@@ -36,11 +36,13 @@ class HomeShell extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final ThemeData(:colorScheme) = Theme.of(context);
     final matchedRoute = GoRouterState.of(context).matchedLocation;
 
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: SalomonBottomBar(
+          selectedItemColor: colorScheme.primary,
           currentIndex:
               navItems.indexWhere((item) => matchedRoute.startsWith(item.path)),
           onTap: (i) {

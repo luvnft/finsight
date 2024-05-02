@@ -16,6 +16,9 @@ ThemeData createTheme({
         color: colorScheme.onSurface.withOpacity(0.6),
       ),
     ),
+    appBarTheme: const AppBarTheme(
+      scrolledUnderElevation: 0,
+    ),
     cardTheme: CardTheme(
       elevation: 0,
       color: Colors.transparent,
