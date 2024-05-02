@@ -13,9 +13,26 @@ class InsightPageChatSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ThemeData(:colorScheme) = Theme.of(context);
+    final scrollController = useScrollController();
     final controller = useTextEditingController();
     final conversation = ref.watch(conversationProvider);
     final conversationNotifier = ref.read(conversationProvider.notifier);
+
+    useEffect(
+      () {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (scrollController.hasClients) {
+            scrollController.animateTo(
+              scrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+            );
+          }
+        });
+        return null;
+      },
+      [conversation, scrollController],
+    );
 
     void onSubmit() {
       if (controller.text.isEmpty) return;
@@ -30,6 +47,7 @@ class InsightPageChatSection extends HookConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: CustomScrollView(
+              controller: scrollController,
               slivers: [
                 SliverList.separated(
                   separatorBuilder: (context, index) => const Gap(8),
