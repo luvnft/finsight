@@ -1,16 +1,5 @@
 part of '../models.dart';
 
-enum AccountType {
-  personal("personal"),
-  business("business"),
-  student("student");
-
-  @enumValue
-  final String label;
-
-  const AccountType(this.label);
-}
-
 enum BankAccountType {
   checking("checking"),
   savings("savings");
@@ -374,7 +363,7 @@ class InfoState with _$InfoState {
   factory InfoState({
     required int id,
     String? name,
-    AccountType? accountType,
+    SupabaseCustomerType? accountType,
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,

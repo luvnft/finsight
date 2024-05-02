@@ -231,7 +231,7 @@ InfoState deserializeInfoState(IsarReader reader) {
   _id = IsarCore.readId(reader);
   final String? _name;
   _name = IsarCore.readString(reader, 1);
-  final AccountType? _accountType;
+  final SupabaseCustomerType? _accountType;
   _accountType = _infoStateAccountType[IsarCore.readString(reader, 2)] ?? null;
   final bool? _hasBankAccount;
   {
@@ -305,7 +305,7 @@ sealed class _InfoStateUpdate {
   bool call({
     required int id,
     String? name,
-    AccountType? accountType,
+    SupabaseCustomerType? accountType,
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
@@ -336,7 +336,7 @@ class _InfoStateUpdateImpl implements _InfoStateUpdate {
           id
         ], {
           if (name != ignore) 1: name as String?,
-          if (accountType != ignore) 2: accountType as AccountType?,
+          if (accountType != ignore) 2: accountType as SupabaseCustomerType?,
           if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
           if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
           if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
@@ -353,7 +353,7 @@ sealed class _InfoStateUpdateAll {
   int call({
     required List<int> id,
     String? name,
-    AccountType? accountType,
+    SupabaseCustomerType? accountType,
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
@@ -382,7 +382,7 @@ class _InfoStateUpdateAllImpl implements _InfoStateUpdateAll {
   }) {
     return collection.updateProperties(id, {
       if (name != ignore) 1: name as String?,
-      if (accountType != ignore) 2: accountType as AccountType?,
+      if (accountType != ignore) 2: accountType as SupabaseCustomerType?,
       if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
       if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
       if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
@@ -403,7 +403,7 @@ extension InfoStateUpdate on IsarCollection<int, InfoState> {
 sealed class _InfoStateQueryUpdate {
   int call({
     String? name,
-    AccountType? accountType,
+    SupabaseCustomerType? accountType,
     bool? hasBankAccount,
     BankAccounts? bankAccounts,
     BankAccountType? bankAccountType,
@@ -432,7 +432,7 @@ class _InfoStateQueryUpdateImpl implements _InfoStateQueryUpdate {
   }) {
     return query.updateProperties(limit: limit, {
       if (name != ignore) 1: name as String?,
-      if (accountType != ignore) 2: accountType as AccountType?,
+      if (accountType != ignore) 2: accountType as SupabaseCustomerType?,
       if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
       if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
       if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
@@ -472,7 +472,7 @@ class _InfoStateQueryBuilderUpdateImpl implements _InfoStateQueryUpdate {
     try {
       return q.updateProperties(limit: limit, {
         if (name != ignore) 1: name as String?,
-        if (accountType != ignore) 2: accountType as AccountType?,
+        if (accountType != ignore) 2: accountType as SupabaseCustomerType?,
         if (hasBankAccount != ignore) 3: hasBankAccount as bool?,
         if (bankAccounts != ignore) 4: bankAccounts as BankAccounts?,
         if (bankAccountType != ignore) 5: bankAccountType as BankAccountType?,
@@ -496,9 +496,9 @@ extension InfoStateQueryBuilderUpdate
 }
 
 const _infoStateAccountType = {
-  r'personal': AccountType.personal,
-  r'business': AccountType.business,
-  r'student': AccountType.student,
+  r'personal': SupabaseCustomerType.personal,
+  r'business': SupabaseCustomerType.business,
+  r'student': SupabaseCustomerType.student,
 };
 const _infoStateBankAccounts = {
   r'asset': BankAccounts.asset,
@@ -884,7 +884,7 @@ extension InfoStateQueryFilter
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> accountTypeEqualTo(
-    AccountType? value,
+    SupabaseCustomerType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -898,7 +898,7 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       accountTypeGreaterThan(
-    AccountType? value,
+    SupabaseCustomerType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -912,7 +912,7 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       accountTypeGreaterThanOrEqualTo(
-    AccountType? value,
+    SupabaseCustomerType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -925,7 +925,7 @@ extension InfoStateQueryFilter
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> accountTypeLessThan(
-    AccountType? value,
+    SupabaseCustomerType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -939,7 +939,7 @@ extension InfoStateQueryFilter
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition>
       accountTypeLessThanOrEqualTo(
-    AccountType? value,
+    SupabaseCustomerType? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -952,8 +952,8 @@ extension InfoStateQueryFilter
   }
 
   QueryBuilder<InfoState, InfoState, QAfterFilterCondition> accountTypeBetween(
-    AccountType? lower,
-    AccountType? upper,
+    SupabaseCustomerType? lower,
+    SupabaseCustomerType? upper,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -2052,7 +2052,8 @@ extension InfoStateQueryProperty1
     });
   }
 
-  QueryBuilder<InfoState, AccountType?, QAfterProperty> accountTypeProperty() {
+  QueryBuilder<InfoState, SupabaseCustomerType?, QAfterProperty>
+      accountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
     });
@@ -2112,7 +2113,7 @@ extension InfoStateQueryProperty2<R>
     });
   }
 
-  QueryBuilder<InfoState, (R, AccountType?), QAfterProperty>
+  QueryBuilder<InfoState, (R, SupabaseCustomerType?), QAfterProperty>
       accountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
@@ -2173,7 +2174,7 @@ extension InfoStateQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<InfoState, (R1, R2, AccountType?), QOperations>
+  QueryBuilder<InfoState, (R1, R2, SupabaseCustomerType?), QOperations>
       accountTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(2);
@@ -2284,8 +2285,8 @@ _$InfoStateImpl _$$InfoStateImplFromJson(Map<String, dynamic> json) =>
     _$InfoStateImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String?,
-      accountType:
-          $enumDecodeNullable(_$AccountTypeEnumMap, json['accountType']),
+      accountType: $enumDecodeNullable(
+          _$SupabaseCustomerTypeEnumMap, json['accountType']),
       hasBankAccount: json['hasBankAccount'] as bool?,
       bankAccounts:
           $enumDecodeNullable(_$BankAccountsEnumMap, json['bankAccounts']),
@@ -2301,7 +2302,7 @@ Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'accountType': _$AccountTypeEnumMap[instance.accountType],
+      'accountType': _$SupabaseCustomerTypeEnumMap[instance.accountType],
       'hasBankAccount': instance.hasBankAccount,
       'bankAccounts': _$BankAccountsEnumMap[instance.bankAccounts],
       'bankAccountType': _$BankAccountTypeEnumMap[instance.bankAccountType],
@@ -2311,10 +2312,10 @@ Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
       'statementCsv': instance.statementCsv,
     };
 
-const _$AccountTypeEnumMap = {
-  AccountType.personal: 'personal',
-  AccountType.business: 'business',
-  AccountType.student: 'student',
+const _$SupabaseCustomerTypeEnumMap = {
+  SupabaseCustomerType.personal: 'personal',
+  SupabaseCustomerType.business: 'business',
+  SupabaseCustomerType.student: 'student',
 };
 
 const _$BankAccountsEnumMap = {
@@ -2476,12 +2477,6 @@ const _$SupabaseDepositsCategoryEnumMap = {
   SupabaseDepositsCategory.rewardChecking: 'rewardChecking',
   SupabaseDepositsCategory.finder: 'finder',
   SupabaseDepositsCategory.businessChecking: 'businessChecking',
-};
-
-const _$SupabaseCustomerTypeEnumMap = {
-  SupabaseCustomerType.personal: 'personal',
-  SupabaseCustomerType.business: 'business',
-  SupabaseCustomerType.student: 'student',
 };
 
 _$SupabaseDepositAvgAPYImpl _$$SupabaseDepositAvgAPYImplFromJson(

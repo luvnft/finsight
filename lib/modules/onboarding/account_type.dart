@@ -13,7 +13,7 @@ class InfoPageAccountTypeSection extends HookConsumerWidget {
     final textTheme = Theme.of(context).textTheme;
     final infoNotifier = ref.read(infoProvider.notifier);
 
-    void onSubmitted(AccountType type) {
+    void onSubmitted(SupabaseCustomerType type) {
       infoNotifier.setState(
         (state) => state.copyWith(accountType: type),
       );
@@ -40,21 +40,21 @@ class InfoPageAccountTypeSection extends HookConsumerWidget {
               FilledButton(
                 child: const Text("Business Account"),
                 onPressed: () {
-                  onSubmitted(AccountType.business);
+                  onSubmitted(SupabaseCustomerType.business);
                 },
               ),
               const Gap(10),
               FilledButton(
                 child: const Text("Personal Account"),
                 onPressed: () {
-                  onSubmitted(AccountType.personal);
+                  onSubmitted(SupabaseCustomerType.personal);
                 },
               ),
               const Gap(10),
               FilledButton(
                 child: const Text("Student Account"),
                 onPressed: () {
-                  onSubmitted(AccountType.student);
+                  onSubmitted(SupabaseCustomerType.student);
                 },
               ),
               const Gap(10),

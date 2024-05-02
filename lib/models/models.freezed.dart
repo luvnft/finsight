@@ -587,7 +587,7 @@ InfoState _$InfoStateFromJson(Map<String, dynamic> json) {
 mixin _$InfoState {
   int get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  AccountType? get accountType => throw _privateConstructorUsedError;
+  SupabaseCustomerType? get accountType => throw _privateConstructorUsedError;
   bool? get hasBankAccount => throw _privateConstructorUsedError;
   BankAccounts? get bankAccounts => throw _privateConstructorUsedError;
   BankAccountType? get bankAccountType => throw _privateConstructorUsedError;
@@ -610,7 +610,7 @@ abstract class $InfoStateCopyWith<$Res> {
   $Res call(
       {int id,
       String? name,
-      AccountType? accountType,
+      SupabaseCustomerType? accountType,
       bool? hasBankAccount,
       BankAccounts? bankAccounts,
       BankAccountType? bankAccountType,
@@ -654,7 +654,7 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
       accountType: freezed == accountType
           ? _value.accountType
           : accountType // ignore: cast_nullable_to_non_nullable
-              as AccountType?,
+              as SupabaseCustomerType?,
       hasBankAccount: freezed == hasBankAccount
           ? _value.hasBankAccount
           : hasBankAccount // ignore: cast_nullable_to_non_nullable
@@ -694,7 +694,7 @@ abstract class _$$InfoStateImplCopyWith<$Res>
   $Res call(
       {int id,
       String? name,
-      AccountType? accountType,
+      SupabaseCustomerType? accountType,
       bool? hasBankAccount,
       BankAccounts? bankAccounts,
       BankAccountType? bankAccountType,
@@ -736,7 +736,7 @@ class __$$InfoStateImplCopyWithImpl<$Res>
       accountType: freezed == accountType
           ? _value.accountType
           : accountType // ignore: cast_nullable_to_non_nullable
-              as AccountType?,
+              as SupabaseCustomerType?,
       hasBankAccount: freezed == hasBankAccount
           ? _value.hasBankAccount
           : hasBankAccount // ignore: cast_nullable_to_non_nullable
@@ -787,7 +787,7 @@ class _$InfoStateImpl implements _InfoState {
   @override
   final String? name;
   @override
-  final AccountType? accountType;
+  final SupabaseCustomerType? accountType;
   @override
   final bool? hasBankAccount;
   @override
@@ -861,7 +861,7 @@ abstract class _InfoState implements InfoState {
   factory _InfoState(
       {required final int id,
       final String? name,
-      final AccountType? accountType,
+      final SupabaseCustomerType? accountType,
       final bool? hasBankAccount,
       final BankAccounts? bankAccounts,
       final BankAccountType? bankAccountType,
@@ -877,7 +877,7 @@ abstract class _InfoState implements InfoState {
   @override
   String? get name;
   @override
-  AccountType? get accountType;
+  SupabaseCustomerType? get accountType;
   @override
   bool? get hasBankAccount;
   @override

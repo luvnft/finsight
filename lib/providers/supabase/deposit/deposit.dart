@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:finsight/modules/home/rankings/chart.dart';
+import 'package:finsight/providers/info/info.dart';
 import 'package:finsight/services/supabase/supabase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:finsight/collections/constants.dart';
@@ -62,17 +63,26 @@ class DepositNotifier extends PaginatedAsyncNotifier<DepositState> {
 
   @override
   FutureOr<DepositState> build() async {
+    final category = ref.read(
+      infoProvider.select((s) {
+        return switch (s.bankAccountType) {
+          BankAccountType.savings => SupabaseDepositsCategory.savings,
+          BankAccountType.checking || _ => SupabaseDepositsCategory.checking,
+        };
+      }),
+    );
+
     final deposits = await fetchDeposits(
       offset: 0,
       limit: 10,
-      category: SupabaseDepositsCategory.checking,
+      category: category,
     );
 
     return DepositState(
       depositsMap: {
-        SupabaseDepositsCategory.checking: deposits,
+        category: deposits,
       },
-      category: SupabaseDepositsCategory.checking,
+      category: category,
       offset: 0,
       hasMore: deposits.length >= 10,
     );

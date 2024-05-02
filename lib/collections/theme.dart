@@ -23,6 +23,17 @@ ThemeData createTheme({
         ),
       ),
     ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(
+          color: colorScheme.surfaceVariant.withOpacity(.8),
+          width: 1,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       isDense: true,
       constraints: const BoxConstraints(minHeight: 48, maxWidth: 200),

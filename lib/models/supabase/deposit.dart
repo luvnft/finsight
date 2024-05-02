@@ -1,9 +1,14 @@
 part of '../models.dart';
 
 enum SupabaseCustomerType {
-  personal,
-  business,
-  student;
+  personal("personal"),
+  business("business"),
+  student("student");
+
+  @enumValue
+  final String label;
+
+  const SupabaseCustomerType(this.label);
 }
 
 enum SupabaseDepositsCategory {
