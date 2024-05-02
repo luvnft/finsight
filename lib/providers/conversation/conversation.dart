@@ -133,7 +133,8 @@ class ConversationNotifier extends Notifier<List<Content>> {
         : """
           This is the the deposit offer currently has been selected.
           I may like to know more about it so I'm providing you with the
-          details in JSON format.
+          details in JSON format. Also, keep the previously submitted
+          offers in memory in case you need to compare.
 
           ```json
           ${jsonEncode(active.toJson())}
