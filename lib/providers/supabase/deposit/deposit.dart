@@ -42,6 +42,8 @@ class DepositState extends PaginatedState {
 class DepositNotifier extends PaginatedAsyncNotifier<DepositState> {
   DepositNotifier() : super();
 
+  InfoState get info => ref.read(infoProvider);
+
   Future<List<SupabaseDeposit>> fetchDeposits({
     required int offset,
     required int limit,
@@ -51,6 +53,7 @@ class DepositNotifier extends PaginatedAsyncNotifier<DepositState> {
         .from(SupabaseTables.deposit)
         .select("*")
         .eq('offerCategory', category.name)
+        .eq('targetCustomer', info.accountType!.name)
         .order('offerAPY', ascending: false)
         .range(offset, offset + limit);
 

@@ -16,6 +16,17 @@ ThemeData createTheme({
         color: colorScheme.onSurface.withOpacity(0.6),
       ),
     ),
+    cardTheme: CardTheme(
+      elevation: 0,
+      color: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: colorScheme.surfaceVariant.withOpacity(.8),
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         shape: RoundedRectangleBorder(

@@ -68,7 +68,7 @@ class OfferScreenApyCardSection extends StatelessWidget {
                         child: Icon(headingIcon),
                       ),
                       title: const AutoSizeText(
-                        "National average",
+                        "Average",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         minFontSize: 12,

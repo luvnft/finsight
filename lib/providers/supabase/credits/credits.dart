@@ -4,6 +4,7 @@ import 'package:finsight/collections/constants.dart';
 import 'package:finsight/collections/supabase.dart';
 import 'package:finsight/models/models.dart';
 import 'package:finsight/modules/home/rankings/chart.dart';
+import 'package:finsight/providers/info/info.dart';
 import 'package:finsight/services/supabase/supabase.dart';
 import 'package:finsight/utils/color.dart';
 import 'package:finsight/utils/pagination.dart';
@@ -38,6 +39,8 @@ class CreditState extends PaginatedState {
 }
 
 class CreditNotifier extends PaginatedAsyncNotifier<CreditState> {
+  InfoState get info => ref.read(infoProvider);
+
   Future<List<SupabaseCredit>> fetch({
     required int offset,
     required int limit,
@@ -46,6 +49,7 @@ class CreditNotifier extends PaginatedAsyncNotifier<CreditState> {
     final credits = await supabase
         .from(SupabaseTables.credit)
         .select("*")
+        .eq('targetCustomer', info.accountType!.name)
         .contains('categories', [category.name])
         .order('estimatedEarning', ascending: false)
         .range(offset, offset + limit)

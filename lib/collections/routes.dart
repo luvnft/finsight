@@ -27,7 +27,7 @@ final routerProvider = Provider((ref) => GoRouter(
             final info = ref.read(infoProvider.notifier);
 
             if (info.isFilled && state.uri.path == "/") {
-              return '/rankings';
+              return '/insights';
             }
 
             return null;
