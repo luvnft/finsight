@@ -1,5 +1,6 @@
 import 'package:finsight/collections/icons.dart';
 import 'package:finsight/modules/home/insights/chat/markdown.dart';
+import 'package:finsight/modules/home/insights/chat/use_hint_text.dart';
 import 'package:finsight/providers/conversation/conversation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -101,19 +102,25 @@ class InsightPageChatSection extends HookConsumerWidget {
         SizedBox(
           height: 40,
           width: double.infinity,
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: "Are there any fees?",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              suffixIcon: IconButton(
-                icon: const Icon(AppIcons.send),
-                onPressed: onSubmit,
-              ),
-            ),
-            onSubmitted: (_) => onSubmit(),
+          child: HookBuilder(
+            builder: (context) {
+              final hintText = useHintText();
+
+              return TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: const Icon(AppIcons.send),
+                    onPressed: onSubmit,
+                  ),
+                ),
+                onSubmitted: (_) => onSubmit(),
+              );
+            },
           ),
         ),
       ],

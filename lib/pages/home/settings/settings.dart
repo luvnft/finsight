@@ -6,7 +6,6 @@ import 'package:finsight/providers/info/info.dart';
 import 'package:finsight/providers/preferences/preferences.dart';
 import 'package:finsight/services/csv/csv.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -89,38 +88,43 @@ class SettingsPage extends HookConsumerWidget {
                                   ),
                                 ],
                               ),
-                            TableRow(children: [
-                              const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  "Statement CSV",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
+                            TableRow(
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    "Statement CSV",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: FilledButton(
-                                  onPressed: () {
-                                    context.pushNamed(
-                                      CSVViewPage.name,
-                                      extra: CSVService.instance.convertToList(
-                                        info.statementCsv!,
-                                      ),
-                                    );
-                                  },
-                                  child: const Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text("View"),
-                                      Gap(5),
-                                      Icon(AppIcons.openLink),
-                                    ],
-                                  ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: info.statementCsv != null
+                                      ? FilledButton(
+                                          onPressed: () {
+                                            context.pushNamed(
+                                              CSVViewPage.name,
+                                              extra: CSVService.instance
+                                                  .convertToList(
+                                                info.statementCsv!,
+                                              ),
+                                            );
+                                          },
+                                          child: const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text("View"),
+                                              Gap(5),
+                                              Icon(AppIcons.openLink),
+                                            ],
+                                          ),
+                                        )
+                                      : const Text("Haven't uploaded yet"),
                                 ),
-                              ),
-                            ]),
+                              ],
+                            ),
                           ],
                         ),
                       ),

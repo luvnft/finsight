@@ -84,6 +84,19 @@ class ConversationNotifier extends Notifier<List<Content>> {
             TextPart("Ok, I'll not tell you to consult a financial advisor."),
           ],
         ),
+        Content.text(
+          """
+          If I submit you some data (json, csv etc) and ask you some question
+          and you don't find answer to it, don't reply with I cannot find the
+          answer in the provider <whatever format> data. Instead, you'll say
+          "I'm sorry but, I can't find the answer to your question."
+          """,
+        ),
+        Content.model(
+          [
+            TextPart("Ok, I'll remember that for future"),
+          ],
+        ),
       ],
     );
 
@@ -141,7 +154,8 @@ class ConversationNotifier extends Notifier<List<Content>> {
           ```
 
           Now, only answer my below question. And don't reply anything about
-          above JSON unless I ask.
+          above JSON unless I ask. Also do not say stuff like, "Based on the
+          information you provided in the JSON". Just answer the question.
 
           Question: $message
           """;
@@ -163,7 +177,7 @@ class ConversationNotifier extends Notifier<List<Content>> {
           newState[nextIndex] = Content.model(
             [
               TextPart(
-                "${(newState[nextIndex].parts.first as TextPart).text} ${res.text}",
+                "${(newState[nextIndex].parts.first as TextPart).text}${res.text}",
               )
             ],
           );
