@@ -18,7 +18,7 @@ class ConversationNotifier extends Notifier<List<Content>> {
 
   @override
   build() {
-    final info = ref.read(infoProvider);
+    final info = ref.watch(infoProvider);
 
     session = gemini.startChat(
       history: [

@@ -1,6 +1,7 @@
 import 'package:finsight/collections/env.dart';
 import 'package:finsight/collections/routes.dart';
 import 'package:finsight/collections/theme.dart';
+import 'package:finsight/providers/preferences/preferences.dart';
 import 'package:finsight/services/isar/isar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -40,11 +41,15 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final router = ref.watch(routerProvider);
+    final themeMode = ref.watch(
+      preferencesProvider.select((s) => s.themeMode),
+    );
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
       title: "Finsight",
+      themeMode: themeMode,
       theme: lightTheme,
       darkTheme: darkTheme,
     );

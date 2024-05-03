@@ -29,10 +29,12 @@ class OnboardingPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Spacer(),
-              Text("Finsight",
-                  style: textTheme.displayMedium!.copyWith(
-                    color: Colors.white,
-                  )),
+              Text(
+                "Finsight",
+                style: textTheme.displayMedium!.copyWith(
+                  color: Colors.white,
+                ),
+              ),
               const Gap(20),
               Text(
                 "Financial insights\n" "powered by AI",

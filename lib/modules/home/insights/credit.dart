@@ -46,17 +46,8 @@ class InsightPageCreditsSection extends HookConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-              icon: const Icon(AppIcons.angleLeft),
-              onPressed: () {
-                controller.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
-            ),
             Consumer(builder: (context, ref, child) {
               final creditIndex = ref.watch(selectedCreditsOfferIndex);
               final credit = credits.value?.elementAt(creditIndex);
@@ -69,15 +60,6 @@ class InsightPageCreditsSection extends HookConsumerWidget {
                 ),
               );
             }),
-            IconButton(
-              icon: const Icon(AppIcons.angleRight),
-              onPressed: () {
-                controller.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
-            ),
           ],
         ),
         const Gap(5),

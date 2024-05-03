@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:finsight/pages/onboarding/info/csv_edit.dart';
+import 'package:finsight/pages/onboarding/onboarding.dart';
 import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -152,7 +153,23 @@ class InfoPageSelectBankAccountSection extends HookConsumerWidget {
           " mm/dd/yy, description and amount",
           style: textTheme.bodySmall,
           textAlign: TextAlign.center,
-        )
+        ),
+        const Gap(20),
+        if (info.statementCsv != null && info.statementCsv!.isNotEmpty)
+          FilledButton(
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                infoNotifier.setState(
+                  (state) => state.copyWith(
+                    accountName: accountController.text,
+                  ),
+                );
+              }
+
+              context.goNamed(OnboardingPage.name);
+            },
+            child: const Text("Continue"),
+          ),
       ],
     );
   }

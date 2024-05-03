@@ -66,7 +66,9 @@ class DepositNotifier extends PaginatedAsyncNotifier<DepositState> {
 
   @override
   FutureOr<DepositState> build() async {
-    final category = ref.read(
+    ref.watch(infoProvider.select((value) => value.accountType));
+
+    final category = ref.watch(
       infoProvider.select((s) {
         return switch (s.bankAccountType) {
           BankAccountType.savings => SupabaseDepositsCategory.savings,

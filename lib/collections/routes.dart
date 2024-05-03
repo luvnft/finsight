@@ -4,6 +4,7 @@ import 'package:finsight/pages/home/insights/insights.dart';
 import 'package:finsight/pages/home/rankings/expanded/credits.dart';
 import 'package:finsight/pages/home/rankings/expanded/deposit.dart';
 import 'package:finsight/pages/home/rankings/rankings.dart';
+import 'package:finsight/pages/home/settings/csv_view.dart';
 import 'package:finsight/pages/home/settings/settings.dart';
 import 'package:finsight/pages/onboarding/info/csv_edit.dart';
 import 'package:finsight/pages/onboarding/info/info.dart';
@@ -81,6 +82,16 @@ final routerProvider = Provider((ref) => GoRouter(
               path: "/settings",
               name: SettingsPage.name,
               builder: (context, state) => const SettingsPage(),
+              routes: [
+                GoRoute(
+                  path: "csv_view",
+                  name: CSVViewPage.name,
+                  parentNavigatorKey: rootNavigatorKey,
+                  builder: (context, state) => CSVViewPage(
+                    csvLimitedList: state.extra as List<List<dynamic>>,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

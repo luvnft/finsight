@@ -1,4 +1,5 @@
 import 'package:finsight/models/models.dart';
+import 'package:finsight/providers/preferences/state.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -8,7 +9,7 @@ class IsarService {
   static Future<void> initialize() async {
     final dir = await getApplicationDocumentsDirectory();
     _isar = Isar.open(
-      schemas: [InfoStateSchema],
+      schemas: [InfoStateSchema, PreferencesStateSchema],
       directory: dir.path,
     );
   }

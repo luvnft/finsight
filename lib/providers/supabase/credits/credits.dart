@@ -63,6 +63,8 @@ class CreditNotifier extends PaginatedAsyncNotifier<CreditState> {
 
   @override
   FutureOr<CreditState> build() async {
+    ref.watch(infoProvider.select((value) => value.accountType));
+
     final credits = await fetch(
       offset: 0,
       limit: 10,

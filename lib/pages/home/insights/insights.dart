@@ -22,8 +22,11 @@ class InsightsPage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 250,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 300,
+                minHeight: 200,
+              ),
               child: switch (info.bankAccounts!) {
                 BankAccounts.asset => const InsightPageDepositSection(),
                 BankAccounts.liability => const InsightPageCreditsSection(),
