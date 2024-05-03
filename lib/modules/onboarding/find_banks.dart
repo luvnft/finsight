@@ -1,8 +1,10 @@
 import 'package:finsight/extensions/strings.dart';
 import 'package:finsight/models/models.dart';
+import 'package:finsight/pages/onboarding/onboarding.dart';
 import 'package:finsight/providers/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InfoPageFindBankSection extends HookConsumerWidget {
@@ -112,6 +114,7 @@ class InfoPageFindBankSection extends HookConsumerWidget {
             }
 
             onNext();
+            context.goNamed(OnboardingPage.name);
           },
           style: FilledButton.styleFrom(
             minimumSize: const Size(200, 40),

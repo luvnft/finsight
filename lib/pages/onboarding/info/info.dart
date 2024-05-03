@@ -40,33 +40,35 @@ class InfoPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: Row(
-          children: [
-            IconButton(
-              icon: const BackButtonIcon(),
-              onPressed: () {
-                controller.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
-              style: IconButton.styleFrom(iconSize: 12),
-            ),
-            Expanded(
-              child: ListenableBuilder(
-                listenable: controller,
-                builder: (context, _) {
-                  return LinearProgressIndicator(
-                    value: ((controller.page ?? 0) + 1) /
-                        pages.length, // page index / length of pages
-                    backgroundColor: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20),
+        flexibleSpace: SafeArea(
+          child: Row(
+            children: [
+              IconButton(
+                icon: const BackButtonIcon(),
+                onPressed: () {
+                  controller.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
                   );
                 },
+                style: IconButton.styleFrom(iconSize: 12),
               ),
-            ),
-            const Gap(10),
-          ],
+              Expanded(
+                child: ListenableBuilder(
+                  listenable: controller,
+                  builder: (context, _) {
+                    return LinearProgressIndicator(
+                      value: ((controller.page ?? 0) + 1) /
+                          pages.length, // page index / length of pages
+                      backgroundColor: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(20),
+                    );
+                  },
+                ),
+              ),
+              const Gap(10),
+            ],
+          ),
         ),
       ),
       body: Padding(
