@@ -56,7 +56,7 @@ class ConversationNotifier extends Notifier<List<Content>> {
         ]),
         Content.text(
           """
-          You've to know about what kind of bank accounts I'm interested in
+          You have to know about what kind of bank accounts I'm interested in
           and what kind of account offer I want. You can use this information to
           help me with the best offer.
           
