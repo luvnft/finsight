@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:finsight/models/models.dart';
 import 'package:finsight/modules/home/insights/deposit.dart';
 import 'package:finsight/modules/home/rankings/credits/credits_item.dart';
+import 'package:finsight/providers/supabase/credits/categories.dart';
 import 'package:finsight/providers/supabase/credits/credits.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -62,9 +63,10 @@ class InsightPageCreditsSection extends HookConsumerWidget {
             if (value != 0 || ref.read(selectedCreditsOfferIndex) == 1) {
               ref.read(selectedCreditsOfferIndex.notifier).state = value;
             }
-
+            final availableCreditCategories =
+                ref.read(creditCategoriesProvider).asData?.value ?? [];
             final isLastCategory = creditsQuery.asData?.value.category ==
-                SupabaseCreditCategory.values.last;
+                availableCreditCategories.last;
             final hasMore = creditsQuery.asData?.value.hasMore == true;
             final isLastCredit = credits.value?.length == value + 1;
 
@@ -74,7 +76,7 @@ class InsightPageCreditsSection extends HookConsumerWidget {
                 break;
               case (true, false, false):
                 {
-                  final nextCategory = SupabaseCreditCategory.values.elementAt(
+                  final nextCategory = availableCreditCategories.elementAt(
                     creditsQuery.asData!.value.category.index + 1,
                   );
                   await creditsNotifier.setCategory(nextCategory);

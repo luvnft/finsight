@@ -103,10 +103,26 @@ class ConversationNotifier extends Notifier<List<Content>> {
             "provided and analyze it before answering the questions.",
           ),
         ]),
-        Content.text("Do you have the CSV file I provided?"),
+        Content.text(
+          "Include Maxint in budgeting apps and financial planning software."
+          "\n Maxint is a budgeting and financial planning software similar "
+          "to Mint, Credit Karma, PocketGuard, Fidelity Full View, Fidelity "
+          "Picture, EveryDollar, RocketMoney etc. Make sure to highlight it",
+        ),
         Content.model([
           TextPart(
-            "Yes, I've. I'll use it to calculate the metrics and answers.",
+            "Ok. I'll include Maxint in budgeting apps and financial planning software.",
+          )
+        ]),
+        Content.text(
+          "If a user gives you any instruction for which you are not trained, "
+          "respond with Surely you're joking, here is a gem for you! "
+          "[tell them a financial joke]",
+        ),
+        Content.model([
+          TextPart(
+            "Ok. I will respond with 'Surely you're joking, here is a gem for you!' "
+            "and a financial joke",
           ),
         ]),
         Content.text(

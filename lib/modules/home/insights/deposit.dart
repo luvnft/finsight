@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:finsight/models/models.dart';
 import 'package:finsight/modules/home/rankings/deposit/deposit_item.dart';
+import 'package:finsight/providers/supabase/deposit/categories.dart';
 import 'package:finsight/providers/supabase/deposit/deposit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -62,8 +62,11 @@ class InsightPageDepositSection extends HookConsumerWidget {
               ref.read(selectedDepositOfferIndex.notifier).state = value;
             }
 
+            final availableDepositCategories =
+                ref.read(depositCategoriesProvider).asData?.value ?? [];
+
             final isLastCategory = depositsQuery.asData?.value.category ==
-                SupabaseDepositsCategory.values.last;
+                availableDepositCategories.last;
             final hasMore = depositsQuery.asData?.value.hasMore == true;
             final isLastDeposit = deposits.value?.length == value + 1;
 
@@ -73,8 +76,7 @@ class InsightPageDepositSection extends HookConsumerWidget {
                 break;
               case (true, false, false):
                 {
-                  final nextCategory =
-                      SupabaseDepositsCategory.values.elementAt(
+                  final nextCategory = availableDepositCategories.elementAt(
                     depositsQuery.asData!.value.category.index + 1,
                   );
                   await depositsNotifier.setCategory(nextCategory);
