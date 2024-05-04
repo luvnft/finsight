@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:finsight/collections/constants.dart';
-import 'package:finsight/collections/icons.dart';
 import 'package:finsight/models/models.dart';
+import 'package:finsight/modules/home/rankings/link_open_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CreditsItem extends HookWidget {
   final SupabaseCredit credit;
@@ -56,12 +57,14 @@ class CreditsItem extends HookWidget {
           // const Icon(AppIcons.angleRight),
         ],
       ),
-      // onTap: () {
-      // context.pushNamed(
-      //   CreditsScreen.id,
-      //   pathParameters: {"id": credit.id},
-      // );
-      // },
+      onTap: () async {
+        final allows = await showDialog<bool>(
+          context: context,
+          builder: (context) => LinkOpenDialog(link: credit.link),
+        );
+        if (allows == false) return;
+        await launchUrlString(credit.link);
+      },
     );
   }
 }
