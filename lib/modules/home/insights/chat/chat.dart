@@ -67,7 +67,7 @@ class InsightPageChatSection extends HookConsumerWidget {
                       alignment: Alignment.centerRight,
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        width: msgWidth,
+                        constraints: BoxConstraints(maxWidth: msgWidth),
                         decoration: BoxDecoration(
                           color: colorScheme.surfaceVariant,
                           borderRadius: BorderRadius.circular(12)
@@ -86,7 +86,7 @@ class InsightPageChatSection extends HookConsumerWidget {
                       const Gap(4),
                       Container(
                         padding: const EdgeInsets.all(8),
-                        width: msgWidth,
+                        constraints: BoxConstraints(maxWidth: msgWidth),
                         decoration: BoxDecoration(
                           color: colorScheme.primaryContainer,
                           borderRadius: BorderRadius.circular(12)
