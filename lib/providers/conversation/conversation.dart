@@ -7,7 +7,6 @@ import 'package:finsight/providers/info/info.dart';
 import 'package:finsight/providers/supabase/credits/credits.dart';
 import 'package:finsight/providers/supabase/deposit/deposit.dart';
 import 'package:finsight/services/gemini/gemini.dart';
-import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -45,7 +44,7 @@ class ConversationNotifier extends Notifier<List<Content>> {
           the CSV as well for quick answers.
 
           ```csv
-          ${info.statementCsv?.split("\n").take(500).join("\n")}
+          ${info.statementCsv}
           ```
           """,
         ),
@@ -122,40 +121,40 @@ class ConversationNotifier extends Notifier<List<Content>> {
       ],
     );
 
-    final statementCsv = info.statementCsv?.split("\n") ?? [];
+    // final statementCsv = info.statementCsv?.split("\n") ?? [];
 
-    if (statementCsv.length > 300) {
-      // partition the CSV into parts of 500 lines or less (last one can be less)
-      // skip the first 500 lines as they are already sent
-      final parts = <String>[];
-      for (var i = 500; i < statementCsv.length; i += 300) {
-        parts.add(statementCsv.skip(i).take(300).join("\n"));
-      }
+    // if (statementCsv.length > 300) {
+    //   // partition the CSV into parts of 500 lines or less (last one can be less)
+    //   // skip the first 500 lines as they are already sent
+    //   final parts = <String>[];
+    //   for (var i = 500; i < statementCsv.length; i += 300) {
+    //     parts.add(statementCsv.skip(i).take(300).join("\n"));
+    //   }
 
-      for (final part in parts) {
-        Future<dynamic>.value(session!.sendMessage(
-          Content.text(
-            """
-            Here's a part of my financial information in CSV format. You can
-            merge it with the previous parts to get the full CSV. Make sure to
-            analyze the CSV as well for quick answers.
-            
-            ```csv
-            $part
-            ```
-            """,
-          ),
-        )).then(
-          (responses) {
-            debugPrint("Sent CSV part: ${responses.text}");
-            return responses;
-          },
-        ).catchError((e) {
-          debugPrint("Error sending CSV parts ${parts.indexOf(part)}: $e");
-          return null;
-        });
-      }
-    }
+    //   for (final part in parts) {
+    //     Future<dynamic>.value(session!.sendMessage(
+    //       Content.text(
+    //         """
+    //         Here's a part of my financial information in CSV format. You can
+    //         merge it with the previous parts to get the full CSV. Make sure to
+    //         analyze the CSV as well for quick answers.
+
+    //         ```csv
+    //         $part
+    //         ```
+    //         """,
+    //       ),
+    //     )).then(
+    //       (responses) {
+    //         debugPrint("Sent CSV part: ${responses.text}");
+    //         return responses;
+    //       },
+    //     ).catchError((e) {
+    //       debugPrint("Error sending CSV parts ${parts.indexOf(part)}: $e");
+    //       return null;
+    //     });
+    //   }
+    // }
 
     ref.onDispose(() {
       _subscription?.cancel();
