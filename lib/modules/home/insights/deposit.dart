@@ -16,7 +16,7 @@ class InsightPageDepositSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final mediaQurey = MediaQuery.of(context);
+    final mediaQuery = MediaQuery.of(context);
     final depositsQuery = ref.watch(depositProvider);
     final deposits = useState(
       depositsQuery.asData?.value.depositsMap.values.expand((el) => el).toSet(),
@@ -45,7 +45,8 @@ class InsightPageDepositSection extends HookConsumerWidget {
       child: CarouselSlider.builder(
         carouselController: controller,
         options: CarouselOptions(
-          aspectRatio: (mediaQurey.size.width - 20) / 65,
+          aspectRatio:
+              (mediaQuery.size.width - 20) / (65 + mediaQuery.devicePixelRatio),
           scrollDirection: Axis.horizontal,
           autoPlay: autoPlay,
           pageSnapping: true,

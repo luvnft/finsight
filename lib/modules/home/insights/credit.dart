@@ -46,7 +46,8 @@ class InsightPageCreditsSection extends HookConsumerWidget {
       child: CarouselSlider.builder(
         carouselController: controller,
         options: CarouselOptions(
-          aspectRatio: (mediaQurey.size.width - 20) / 65,
+          aspectRatio: (mediaQurey.size.width - 20) /
+              (65 + MediaQuery.devicePixelRatioOf(context)),
           scrollDirection: Axis.horizontal,
           autoPlay: autoPlay,
           pageSnapping: true,
