@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 const questions = [
-  r"What is the best high-yield account?",
-  r"What is the difference between a checking and a savings account?",
-  r"How much I can earn on a CD if I deposit $15,000?",
-  r"What is the best credit card for gas?",
-  r"What is the best cashback card?",
-  r"How much cash back can I earn if spend $5,000 on travel",
+  "Provide a detailed list of tasks that you can help me with.",
+  "Help me understand budgeting.",
+  "Describe the best practices for saving.",
+  "Teach me the most important concepts about investing.",
 ];
 
 String useHintText() {

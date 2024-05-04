@@ -358,7 +358,7 @@ enum BankAccountTypeLevel5 {
 }
 
 @freezed
-@Collection(ignore: {'copyWith', 'isFilled'})
+@Collection(ignore: {'copyWith'})
 class InfoState with _$InfoState {
   factory InfoState({
     required int id,

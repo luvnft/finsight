@@ -30,33 +30,30 @@ class ConversationNotifier extends Notifier<List<Content>> {
           anything about finance.
           """,
         ),
-        Content.model(
-          [
-            TextPart(
-              "Hi, I'm your Financial Assistance.\n"
-              "You can ask me anything about finance.",
-            ),
-          ],
-        ),
+        Content.model([
+          TextPart(
+            "Hi, I'm your Financial Assistance.\n"
+            "You can ask me anything about finance.",
+          ),
+        ]),
         Content.text(
           """
           To calculate certain financial metrics, you'll need my bare bones financial
           information. All the bank transactions and account balances are below as CSV
           files. You can use them to calculate the metrics. Do not show me the CSV 
-          unless I ask. Just use them to calculate the metrics.
+          unless I ask. Just use them to calculate the metrics. Make sure to analyze
+          the CSV as well for quick answers.
 
           ```csv
           ${info.statementCsv}
           ```
           """,
         ),
-        Content.model(
-          [
-            TextPart(
-              "I have received your financial information. What would you like to know?",
-            ),
-          ],
-        ),
+        Content.model([
+          TextPart(
+            "I have received your financial information. What would you like to know?",
+          ),
+        ]),
         Content.text(
           """
           Btw, you've to know about what kind of bank accounts I'm interested in
@@ -71,19 +68,15 @@ class ConversationNotifier extends Notifier<List<Content>> {
           Name of my bank account: ${info.accountName}
           """,
         ),
-        Content.model(
-          [
-            TextPart(
-              "Ok, I'll remember that for future",
-            ),
-          ],
-        ),
+        Content.model([
+          TextPart(
+            "Ok, I'll remember that for future",
+          ),
+        ]),
         Content.text("Also, do not tell me to consult a financial advisor."),
-        Content.model(
-          [
-            TextPart("Ok, I'll not tell you to consult a financial advisor."),
-          ],
-        ),
+        Content.model([
+          TextPart("Ok, I'll not tell you to consult a financial advisor."),
+        ]),
         Content.text(
           """
           If I submit you some data (json, csv etc) and ask you some question
@@ -92,11 +85,40 @@ class ConversationNotifier extends Notifier<List<Content>> {
           "I'm sorry but, I can't find the answer to your question."
           """,
         ),
-        Content.model(
-          [
-            TextPart("Ok, I'll remember that for future"),
-          ],
+        Content.model([
+          TextPart("Ok, I'll remember that for future"),
+        ]),
+        Content.text(
+          """
+          When I asked questions that directly relate to the data I've provided
+          e.g.
+          What I'm spending on most? What is my total expense? What is my total
+          income? etc.
+          You can answer them based on the data I've provided. You should always
+          remember to use the data I've provided to answer these questions.
+          """,
         ),
+        Content.model([
+          TextPart(
+            "Ok, I'll remember that for future and will use the data you've "
+            "provided and analyze it before answering the questions.",
+          ),
+        ]),
+        Content.text("Do you have the CSV file I provided?"),
+        Content.model([
+          TextPart(
+            "Yes, I've. I'll use it to calculate the metrics and answers.",
+          ),
+        ]),
+        Content.text(
+          "Ok, from now on use/analyze the CSV to answer my questions",
+        ),
+        Content.model([
+          TextPart(
+            "Ok, I'll remember that and will use the CSV to answer "
+            "your questions.",
+          ),
+        ]),
       ],
     );
 
@@ -147,7 +169,8 @@ class ConversationNotifier extends Notifier<List<Content>> {
           This is the the deposit offer currently has been selected.
           I may like to know more about it so I'm providing you with the
           details in JSON format. Also, keep the previously submitted
-          offers in memory in case you need to compare.
+          offers in memory in case you need to compare. Make sure to analyze
+          the JSON as well for quick answers.
 
           ```json
           ${jsonEncode(active.toJson())}
@@ -188,7 +211,7 @@ class ConversationNotifier extends Notifier<List<Content>> {
         state = newState;
       },
       onDone: () {
-        _sentOfferIds.add(active.id);
+        if (active != null) _sentOfferIds.add(active.id);
       },
     );
   }
