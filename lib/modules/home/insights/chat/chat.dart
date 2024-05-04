@@ -46,58 +46,55 @@ class InsightPageChatSection extends HookConsumerWidget {
     return Column(
       children: [
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomScrollView(
-              controller: scrollController,
-              slivers: [
-                SliverList.separated(
-                  separatorBuilder: (context, index) => const Gap(8),
-                  itemCount: conversation.length,
-                  itemBuilder: (context, index) {
-                    final content = conversation[index];
+          child: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              SliverList.separated(
+                separatorBuilder: (context, index) => const Gap(8),
+                itemCount: conversation.length,
+                itemBuilder: (context, index) {
+                  final content = conversation[index];
 
-                    if (content.role == "user") {
-                      return Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(maxWidth: 200),
-                          decoration: BoxDecoration(
-                            color: colorScheme.surfaceVariant,
-                            borderRadius: BorderRadius.circular(12)
-                                .copyWith(topRight: const Radius.circular(4)),
-                          ),
-                          child: MarkdownText(
-                            text: (content.parts.first as TextPart).text,
-                          ),
+                  if (content.role == "user") {
+                    return Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        constraints: const BoxConstraints(maxWidth: 200),
+                        decoration: BoxDecoration(
+                          color: colorScheme.surfaceVariant,
+                          borderRadius: BorderRadius.circular(12)
+                              .copyWith(topRight: const Radius.circular(4)),
                         ),
-                      );
-                    }
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Icon(AppIcons.bulb, size: 18),
-                        const Gap(4),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(maxWidth: 200),
-                          decoration: BoxDecoration(
-                            color: colorScheme.primaryContainer,
-                            borderRadius: BorderRadius.circular(12)
-                                .copyWith(topLeft: const Radius.circular(4)),
-                          ),
-                          child: MarkdownText(
-                            text: (content.parts.first as TextPart).text,
-                          ),
+                        child: MarkdownText(
+                          text: (content.parts.first as TextPart).text,
                         ),
-                      ],
+                      ),
                     );
-                  },
-                ),
-                const SliverGap(20),
-              ],
-            ),
+                  }
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(AppIcons.bulb, size: 18),
+                      const Gap(4),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        constraints: const BoxConstraints(maxWidth: 200),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(12)
+                              .copyWith(topLeft: const Radius.circular(4)),
+                        ),
+                        child: MarkdownText(
+                          text: (content.parts.first as TextPart).text,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+              const SliverGap(20),
+            ],
           ),
         ),
         SizedBox(

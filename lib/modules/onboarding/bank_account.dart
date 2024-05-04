@@ -13,7 +13,19 @@ class InfoPageBankAccountSection extends HookConsumerWidget {
 
     void onSubmit(bool hasBank) {
       infoNotifier.setState(
-        (state) => state.copyWith(hasBankAccount: hasBank),
+        (state) {
+          if (hasBank) {
+            return state.copyWith(
+                hasBankAccount: hasBank, bankAccountType: null);
+          } else {
+            return state.copyWith(
+              hasBankAccount: hasBank,
+              bankAccountTypeLevel5: null,
+              accountName: null,
+              statementCsv: null,
+            );
+          }
+        },
       );
       onNext();
     }
