@@ -1,0 +1,24 @@
+summary: Personal Finance Assistant by Maxint Inc.
+group: Applications/Publishing
+vendor: Maxint
+packager: Predrag Cvetkovski
+packagerEmail: predragcvetkovski@maxint.com
+license: BSD-4-Clause
+url: https://github.com/maxint-app/finsight
+requires:
+  - xdg-user-dirs
+
+display_name: Finsight
+icon: assets/icon/icon.png
+
+keywords:
+  - Bank
+  - Finance
+  - Money
+  - Money Management
+
+generic_name: Personal Finance Assistant
+categories:
+  - Office
+  - Finance
+  - Economy

@@ -1,0 +1,8 @@
+app_id: F14B3C6C-872B-4F94-A6C1-8DFEDEF638CF
+publisher: Finsight, Maxint
+publisher_url: https://maxint.com
+display_name: Finsight
+create_desktop_icon: true
+install_dir_name: Finsight
+locales:
+  - en

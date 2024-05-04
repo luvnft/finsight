@@ -1,0 +1,28 @@
+display_name: Finsight
+package_name: finsight
+
+maintainer:
+  name: Predrag Cvetkovski
+  email: predragcvetkovski@maxint.com
+
+priority: optional
+section: x11
+installed_size: 18000
+
+dependencies:
+  - xdg-user-dirs
+
+essential: false
+icon: assets/logo.png
+
+keywords:
+  - Bank
+  - Finance
+  - Money
+  - Money Management
+
+generic_name: Personal Finance Assistant
+categories:
+  - Office
+  - Finance
+  - Economy
