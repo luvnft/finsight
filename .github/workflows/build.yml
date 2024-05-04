@@ -1,20 +1,36 @@
 name: Build
 on:
   workflow_dispatch: 
+    inputs:
+      enviornment:
+        type: choice
+        description: 'The environment to build for'
+        required: true
+        default: 'sandbox'
+        options:
+          - dev
+          - prod
+      debug:
+        type: choice
+        description: 'Debug with SSH'
+        required: false
+        default: 'false'
+        options:
+          - true
+          - false
 
 env:
   FLUTTER_VERSION: 3.19.5
   FLUTTER_CHANNEL: stable
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+  TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+  TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
 
 jobs:
   android:
     runs-on: ubuntu-latest
-    env:
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-      TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-      TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v4.0.0  
@@ -60,3 +76,272 @@ jobs:
         uses: mxschmitt/action-tmate@v3
         with:
           limit-access-to-actor: true
+
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2.10.0
+        with:
+          cache: true
+          channel: ${{ env.FLUTTER_CHANNEL}}
+          flutter-version: ${{ env.FLUTTER_VERSION  }}
+
+      - name: Create .env
+        shell: bash
+        run: |
+          envsubst < .env.example > .env
+      
+      - name: Generating files with build_runner
+        shell: bash
+        run: |
+          dart pub global activate flutter_distributor
+          dart run build_runner build --delete-conflicting-outputs
+      
+      - name: Build windows EXE
+        run: |
+          flutter_distributor package --platform windows --target exe --skip-clean
+          mv dist/**/finsight-*-windows-setup.exe dist/Finsight-windows-x86_64-setup.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: Finsight-Release-Binaries
+          path: dist/Finsight-windows-x86_64-setup.exe
+
+      - name: Debug With SSH When fails
+        if: ${{ failure() && inputs.debug }}
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2.10.0
+        with:
+          cache: true
+          channel: ${{ env.FLUTTER_CHANNEL}}
+          flutter-version: ${{ env.FLUTTER_VERSION  }}
+      
+      - name: Install apt deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev make fakeroot strace fuse libunwind-dev locate patchelf
+
+      - name: Create .env
+        shell: bash
+        run: |
+          envsubst < .env.example > .env
+      
+      - name: Generating files with build_runner
+        run: |
+          dart pub global activate flutter_distributor
+          dart run build_runner build --delete-conflicting-outputs
+      
+      - name: Build linux packages
+        run: |
+          alias dpkg-deb="dpkg-deb --Zxz"
+          flutter_distributor package --platform linux --target deb --skip-clean
+          # flutter_distributor package --platform linux --target rpm --skip-clean
+          mv dist/**/finsight-*-linux.deb dist/Finsight-linux-x86_64.deb
+          # mv dist/**/finsight-*-linux.rpm dist/Finsight-linux-x86_64.rpm
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: Finsight-Release-Binaries
+          path: |
+            dist/Finsight-linux-x86_64.deb
+            # dist/Finsight-linux-x86_64.rpm
+
+      - name: Debug With SSH When fails
+        if: ${{ failure() && inputs.debug }}
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+
+  macos:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2.10.0
+        with:
+          cache: true
+          channel: ${{ env.FLUTTER_CHANNEL}}
+          flutter-version: ${{ env.FLUTTER_VERSION  }}
+      
+      - name: Install deps
+        run: |
+          npm install -g appdmg
+
+      - name: Create .env
+        shell: bash
+        run: |
+          envsubst < .env.example > .env
+      
+      - name: Generating files with build_runner
+        run: |
+          dart pub global activate flutter_distributor
+          dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build macos pkg
+        run: |
+          flutter_distributor package --platform macos --target pkg,dmg --skip-clean
+          mv dist/**/finsight-*-macos.pkg dist/Finsight-macos-universal.pkg
+          mv dist/**/finsight-*-macos.dmg dist/Finsight-macos-universal.dmg
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: Finsight-Release-Binaries
+          path: |
+            dist/Finsight-macos-universal.pkg
+            dist/Finsight-macos-universal.dmg
+
+      - name: Debug With SSH When fails
+        if: ${{ failure() && inputs.debug }}
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+
+  # ios:
+  #   runs-on: macos-13
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Install Apple Certificate
+  #       uses: apple-actions/import-codesign-certs@v1
+  #       with:
+  #         p12-file-base64: ${{ secrets.IOS_P12_BASE64 }}
+  #         p12-password: ${{ secrets.IOS_P12_PASSWORD }}
+
+  #     - name: Install the provisioning profile
+  #       run: |
+  #         export PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+
+  #         echo -n "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" | base64 --decode > $PP_PATH
+
+  #         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+  #         cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+  #     - uses: subosito/flutter-action@v2.10.0
+  #       with:
+  #         cache: true
+  #         channel: ${{ env.FLUTTER_CHANNEL}}
+  #         flutter-version: ${{ env.FLUTTER_VERSION  }}
+
+  #     - name: Create .env
+  #       shell: bash
+  #       run: |
+  #         envsubst < .env.example > .env
+
+  #     - name: Adjust AppStoreConnect compatible version number
+  #       run: |
+  #         sed -i '' -E 's/(version:[[:space:]]*[0-9]+\.[0-9]+\.[0-9]+)-[a-zA-Z]+(\.[0-9]+)?/\1/' pubspec.yaml
+      
+  #     - name: Generating files with build_runner
+  #       run: |
+  #         dart run build_runner build --delete-conflicting-outputs
+
+  #     - name: Build ipa package
+  #       run: |
+  #         flutter build ios --release --no-codesign
+
+  #         xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release
+
+  #         xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=${{secrets.IOS_DEV_TEAM}} -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive PROVISIONING_PROFILE=${{secrets.IOS_PROVISIONING_PROFILE_UUID}} clean archive CODE_SIGN_IDENTITY="Apple Distribution: Finsight, Inc."
+
+  #         xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
+
+  #         mv build-output/ios/finsight.ipa Finsight-ios-universal.ipa
+
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         if-no-files-found: error
+  #         name: Finsight-Release-Binaries
+  #         path: |
+  #           ./Finsight-ios-universal.ipa
+
+  #     - name: Debug With SSH When fails
+  #       if: ${{ failure() && inputs.debug }}
+  #       uses: mxschmitt/action-tmate@v3
+  #       with:
+  #         limit-access-to-actor: true
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [linux, android, macos, windows]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: Finsight-Release-Binaries
+          path: ./Finsight-Release-Binaries
+
+      - name: Install dependencies
+        run: sudo apt-get install tree -y
+
+      - name: Generate Checksums
+        run: |
+          tree .
+          md5sum Finsight-Release-Binaries/* >> RELEASE.md5sum
+          sha256sum Finsight-Release-Binaries/* >> RELEASE.sha256sum
+          sed -i 's|Finsight-Release-Binaries/||' RELEASE.sha256sum RELEASE.md5sum
+
+      - name: Extract pubspec version (prod)
+        if: ${{ inputs.enviornment == 'prod' }}
+        run: |
+          echo "PUBSPEC_VERSION=$(grep -oP 'version:\s*\K[^+]+(?=\+)' pubspec.yaml)" >> $GITHUB_ENV
+
+      - uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: Finsight-Release-Binaries
+          path: |
+            RELEASE.md5sum
+            RELEASE.sha256sum
+
+      - name: Upload Release Binaries (staging)
+        uses: ncipollo/release-action@v1
+        if: ${{ inputs.enviornment != 'prod' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: staging
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          allowUpdates: true
+          artifacts: Finsight-Release-Binaries/*,RELEASE.sha256sum,RELEASE.md5sum
+
+      - name: Upload Release Binaries (prod)
+        uses: ncipollo/release-action@v1
+        if: ${{ inputs.enviornment == 'prod' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.PUBSPEC_VERSION }}
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          allowUpdates: true
+          artifacts: Finsight-Release-Binaries/*,RELEASE.sha256sum,RELEASE.md5sum
+
+      - name: Public Release
+        uses: ncipollo/release-action@v1
+        if: ${{ inputs.enviornment == 'prod' }}
+        with:
+          token: ${{ secrets.PUBLIC_RELEASE_TOKEN }}
+          tag: ${{ env.PUBSPEC_VERSION }}
+          repo: builds
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          allowUpdates: true
+          artifacts: Finsight-Release-Binaries/*,RELEASE.sha256sum,RELEASE.md5sum
