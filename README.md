@@ -8,6 +8,9 @@ Give us a ❤️ on:
 ## Download
 
 - [Download Latest Android Apk](https://github.com/maxint-app/finsight/releases/latest/download/Finsight-android-all.apk)
+- [Download Latest Windows Executable](https://github.com/maxint-app/finsight/releases/latest/download/Finsight-windows-x86_64-setup.exe)
+- [Download Latest MacOS DMG (both M1 and Intel)](https://github.com/maxint-app/finsight/releases/latest/download/Finsight-macos-universal.dmg)
+- [Download Latest Linux .deb](https://github.com/maxint-app/finsight/releases/latest/download/Finsight-linux-x86_64.deb)
 
 ## LICENSE
 
