@@ -93,7 +93,7 @@ class ConversationNotifier extends Notifier<List<Content>> {
           """
           When I asked questions that directly relate to the data I've provided
           e.g.
-          What I'm spending on most? What is my total expense? What is my total
+          What is my highest spending category? What is my total expense? What is my total
           income? etc.
           You can answer them based on the data I've provided. You should always
           remember to use the data I've provided to answer these questions.
