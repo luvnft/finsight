@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:finsight/models/models.dart';
 import 'package:finsight/modules/home/insights/deposit.dart';
 import 'package:finsight/modules/home/rankings/credits/credits_item.dart';
@@ -91,7 +90,7 @@ class InsightPageCreditsSection extends HookConsumerWidget {
           final credit = credits.value!.elementAt(index);
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            padding: const EdgeInsets.only(right: 4.0),
             child: CreditsItem(credit: credit),
           );
         }),

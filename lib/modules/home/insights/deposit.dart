@@ -90,7 +90,7 @@ class InsightPageDepositSection extends HookConsumerWidget {
           final deposit = deposits.value!.elementAt(index);
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            padding: const EdgeInsets.only(right: 4.0),
             child: DepositItem(deposit: deposit),
           );
         }),
