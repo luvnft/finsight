@@ -53,15 +53,15 @@ class CreditsItem extends HookWidget {
             formatCurrency.format(credit.estimatedEarning),
             style: textTheme.titleLarge,
           ),
-          const Icon(AppIcons.angleRight),
+          // const Icon(AppIcons.angleRight),
         ],
       ),
-      onTap: () {
-        // context.pushNamed(
-        //   CreditsScreen.id,
-        //   pathParameters: {"id": credit.id},
-        // );
-      },
+      // onTap: () {
+      // context.pushNamed(
+      //   CreditsScreen.id,
+      //   pathParameters: {"id": credit.id},
+      // );
+      // },
     );
   }
 }

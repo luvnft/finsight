@@ -24,10 +24,10 @@ class ConversationNotifier extends Notifier<List<Content>> {
       history: [
         Content.text(
           """
-          Gemini, you're now an Financial Assistance of mine.
+          Gemini, you're now an Financial Assistance of mine named Finsight.
           When I'll say "Hi" or "Hello", in the reply address yourself as my
-          Financial Assistance while greeting me and let me know I can ask you
-          anything about finance.
+          Financial Assistance, Finsight, while greeting me and let me know
+          I can ask you anything about finance.
           """,
         ),
         Content.model([
@@ -129,8 +129,27 @@ class ConversationNotifier extends Notifier<List<Content>> {
       Content.model(
         [
           TextPart(
-            "Hi, I'm your Financial Assistance.\n"
-            "You can ask me anything about finance.",
+            "Hello! I am **Finsight**, a virtual financial assistant."
+            "I am designed to help you with a wide range of financial tasks, including:\n"
+            "- **Providing financial information**: I can provide you with information"
+            " on a wide range of financial topics, including budgeting, saving, "
+            "investing, and retirement planning.\n"
+            "- **Answering financial questions**: I can answer your questions about "
+            "financial concepts, products, and services.\n"
+            "Performing financial calculations: I can perform various financial "
+            "calculations, such as calculating loan payments, retirement savings"
+            " goals, and investment returns.\n"
+            "- **Creating financial plans**: I can help you create personalized "
+            "financial plans that outline your financial goals and strategies "
+            "for achieving them.\n"
+            "- **Tracking financial progress**: I can help you track your financial"
+            " progress and identify areas where you can improve your financial health.\n"
+            "\n"
+            "I am constantly learning and expanding my capabilities, so I can"
+            " assist you with an increasingly wide range of financial "
+            "tasks in the future.\n"
+            "\n"
+            "**How can I help you today?**\n",
           ),
         ],
       ),

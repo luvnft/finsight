@@ -1,6 +1,7 @@
 import 'package:finsight/collections/icons.dart';
 import 'package:finsight/modules/home/insights/chat/markdown.dart';
 import 'package:finsight/modules/home/insights/chat/use_hint_text.dart';
+import 'package:finsight/modules/home/insights/deposit.dart';
 import 'package:finsight/providers/conversation/conversation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -118,6 +119,11 @@ class InsightPageChatSection extends HookConsumerWidget {
                     onPressed: onSubmit,
                   ),
                 ),
+                onChanged: (_) {
+                  if (ref.read(autoPlayProvider)) {
+                    ref.read(autoPlayProvider.notifier).state = false;
+                  }
+                },
                 onSubmitted: (_) => onSubmit(),
               );
             },

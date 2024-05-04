@@ -3,11 +3,9 @@ import 'dart:ui';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:finsight/collections/constants.dart';
-import 'package:finsight/collections/icons.dart';
 import 'package:finsight/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 
 class DepositItem extends HookWidget {
   final SupabaseDeposit deposit;
@@ -75,15 +73,15 @@ class DepositItem extends HookWidget {
             formatPercentageWithDecimal.format((deposit.offerAPY ?? 0) / 100),
             style: textTheme.titleLarge,
           ),
-          const Icon(AppIcons.angleRight),
+          // const Icon(AppIcons.angleRight),
         ],
       ),
-      onTap: () {
-        // context.pushNamed(
-        //   DepositScreen.id,
-        //   pathParameters: {"id": deposit.id},
-        // );
-      },
+      // onTap: () {
+      // context.pushNamed(
+      //   DepositScreen.id,
+      //   pathParameters: {"id": deposit.id},
+      // );
+      // },
     );
   }
 }

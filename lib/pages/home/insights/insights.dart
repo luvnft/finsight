@@ -13,7 +13,6 @@ class InsightsPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final ThemeData(:textTheme) = Theme.of(context);
     final info = ref.watch(infoProvider);
 
     return Scaffold(
@@ -22,18 +21,10 @@ class InsightsPage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 300,
-                minHeight: 200,
-              ),
-              child: switch (info.bankAccounts!) {
-                BankAccounts.asset => const InsightPageDepositSection(),
-                BankAccounts.liability => const InsightPageCreditsSection(),
-              },
-            ),
-            const Gap(16),
-            Text(" Insights", style: textTheme.titleLarge),
+            switch (info.bankAccounts!) {
+              BankAccounts.asset => const InsightPageDepositSection(),
+              BankAccounts.liability => const InsightPageCreditsSection(),
+            },
             const Gap(16),
             const Expanded(child: InsightPageChatSection()),
           ],
