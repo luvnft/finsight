@@ -21,50 +21,53 @@ class CreditsItem extends HookWidget {
       [credit.imageExternalUrl],
     );
 
-    return ListTile(
-      horizontalTitleGap: 12,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: dividerColor.withOpacity(.1)),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(2.0),
-        child: Image.memory(imgBuffer, width: 36),
-      ),
-      title: AutoSizeText(
-        credit.name,
-        maxLines: 2,
-        minFontSize: 14,
-        overflow: TextOverflow.ellipsis,
-      ),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: Text(
-          credit.introBonus,
-          style: textTheme.bodySmall?.copyWith(
-            color: dividerColor,
+    return Tooltip(
+      message: credit.name,
+      child: ListTile(
+        horizontalTitleGap: 12,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: dividerColor.withOpacity(.1)),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(2.0),
+          child: Image.memory(imgBuffer, width: 36),
+        ),
+        title: AutoSizeText(
+          credit.name,
+          maxLines: 1,
+          minFontSize: 14,
+          overflow: TextOverflow.ellipsis,
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Text(
+            credit.introBonus,
+            style: textTheme.bodySmall?.copyWith(
+              color: dividerColor,
+            ),
           ),
         ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              formatCurrency.format(credit.estimatedEarning),
+              style: textTheme.titleLarge,
+            ),
+            // const Icon(AppIcons.angleRight),
+          ],
+        ),
+        onTap: () async {
+          final allows = await showDialog<bool>(
+            context: context,
+            builder: (context) => LinkOpenDialog(link: credit.link),
+          );
+          if (allows == false) return;
+          await launchUrlString(credit.link);
+        },
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            formatCurrency.format(credit.estimatedEarning),
-            style: textTheme.titleLarge,
-          ),
-          // const Icon(AppIcons.angleRight),
-        ],
-      ),
-      onTap: () async {
-        final allows = await showDialog<bool>(
-          context: context,
-          builder: (context) => LinkOpenDialog(link: credit.link),
-        );
-        if (allows == false) return;
-        await launchUrlString(credit.link);
-      },
     );
   }
 }
