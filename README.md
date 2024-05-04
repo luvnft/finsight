@@ -9,7 +9,9 @@ Give us a ❤️ on:
 
 - [Download Latest Android Apk](https://github.com/maxint-app/finsight/releases/latest/download/Finsight-android-all.apk)
 
+## LICENSE
 
+[Mozilla Public License 2.0](/LICENSE)
 
 <p align="center">
 © 2024 Maxint Inc.
