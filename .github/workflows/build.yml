@@ -19,6 +19,9 @@ on:
           - true
           - false
 
+permissions:
+  contents: write
+
 env:
   FLUTTER_VERSION: 3.19.5
   FLUTTER_CHANNEL: stable
