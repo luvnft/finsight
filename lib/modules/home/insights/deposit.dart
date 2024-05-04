@@ -47,7 +47,7 @@ class InsightPageDepositSection extends HookConsumerWidget {
         options: CarouselOptions(
           aspectRatio: (mediaQurey.size.width - 20) / 85,
           scrollDirection: Axis.horizontal,
-          autoPlay: false,
+          autoPlay: autoPlay,
           pageSnapping: true,
           pageViewKey: const PageStorageKey('deposit'),
           enableInfiniteScroll: false,
