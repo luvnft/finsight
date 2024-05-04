@@ -1,3 +1,4 @@
+import 'package:adaptive_breakpoints/adaptive_breakpoints.dart';
 import 'package:finsight/collections/icons.dart';
 import 'package:finsight/modules/home/insights/chat/markdown.dart';
 import 'package:finsight/modules/home/insights/chat/use_hint_text.dart';
@@ -14,7 +15,9 @@ class InsightPageChatSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final mediaQuery = MediaQuery.of(context);
     final ThemeData(:colorScheme) = Theme.of(context);
+    final windowType = getWindowType(context);
     final scrollController = useScrollController();
     final controller = useTextEditingController();
     final conversation = ref.watch(conversationProvider);
@@ -43,6 +46,10 @@ class InsightPageChatSection extends HookConsumerWidget {
       controller.clear();
     }
 
+    final msgWidth = windowType <= AdaptiveWindowType.small
+        ? mediaQuery.size.width * 0.65
+        : mediaQuery.size.width * 0.3;
+
     return Column(
       children: [
         Expanded(
@@ -60,7 +67,7 @@ class InsightPageChatSection extends HookConsumerWidget {
                       alignment: Alignment.centerRight,
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        constraints: const BoxConstraints(maxWidth: 200),
+                        width: msgWidth,
                         decoration: BoxDecoration(
                           color: colorScheme.surfaceVariant,
                           borderRadius: BorderRadius.circular(12)
@@ -79,7 +86,7 @@ class InsightPageChatSection extends HookConsumerWidget {
                       const Gap(4),
                       Container(
                         padding: const EdgeInsets.all(8),
-                        constraints: const BoxConstraints(maxWidth: 200),
+                        width: msgWidth,
                         decoration: BoxDecoration(
                           color: colorScheme.primaryContainer,
                           borderRadius: BorderRadius.circular(12)
